@@ -1,0 +1,142 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Thesis.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: biblatex.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+Reallocating 'name_of_file' (item size: 1) to 30 items.
+A level-1 auxiliary file: FrontBackmatter/Titlepage.aux
+Reallocating 'name_of_file' (item size: 1) to 30 items.
+A level-1 auxiliary file: FrontBackmatter/Titleback.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: FrontBackmatter/Dedication.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: FrontBackmatter/Abstract.aux
+Reallocating 'name_of_file' (item size: 1) to 33 items.
+A level-1 auxiliary file: FrontBackmatter/Publications.aux
+Reallocating 'name_of_file' (item size: 1) to 36 items.
+A level-1 auxiliary file: FrontBackmatter/Acknowledgments.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: FrontBackmatter/Contents.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+A level-1 auxiliary file: Chapters/Introduction.aux
+White space in argument---line 272 of file Thesis.aux
+ : \@input{Chapters/Light
+ :                        Field.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 309 of file Thesis.aux
+ : \@input{Chapters/Theoretical
+ :                              Framework.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 385 of file Thesis.aux
+ : \@input{Chapters/Mathematical
+ :                               Tools.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 467 of file Thesis.aux
+ : \@input{Chapters/Results
+ :                          and Discussion.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 543 of file Thesis.aux
+ : \@input{Chapters/Conclusion
+ :                             and Outlook.aux}
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: Chapters/Appendix.aux
+Reallocating 'name_of_file' (item size: 1) to 33 items.
+A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
+Reallocating 'name_of_file' (item size: 1) to 32 items.
+A level-1 auxiliary file: FrontBackmatter/Declaration.aux
+Reallocating 'name_of_file' (item size: 1) to 36 items.
+A level-1 auxiliary file: FrontBackmatter/CurriculumVitae.aux
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'field_info' (item size: 4) to 25020 items.
+Database file #1: Thesis-blx.bib
+Database file #2: Bibliography.bib
+I was expecting a `,' or a `}'---line 467 of file Bibliography.bib
+ :   
+ :   month = {Jan},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 963 of file Bibliography.bib
+ :   issn = {2469-9926}, 
+ :                       % Current ISSN for Phys. Rev. A
+I'm skipping whatever remains of this entry
+You're missing a field name---line 994 of file Bibliography.bib
+ :   issn = {2469-9926}, 
+ :                       % Current ISSN for Physical Review A
+I'm skipping whatever remains of this entry
+Repeated entry---line 1351 of file Bibliography.bib
+ : @article{Ivanov2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Warning--I'm ignoring Serov2017's extra "isbn" field
+--line 1582 of file Bibliography.bib
+Repeated entry---line 1777 of file Bibliography.bib
+ : @article{Rook2024
+ :                  ,
+I'm skipping whatever remains of this entry
+Warning--I'm ignoring Birger2020Thesis's extra "url" field
+--line 1925 of file Bibliography.bib
+Warning--I'm ignoring Birger2020Thesis's extra "url" field
+--line 1926 of file Bibliography.bib
+Reallocating 'str_pool' (item size: 1) to 130000 items.
+Biblatex version: 3.20
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+You've used 143 entries,
+            6402 wiz_defined-function locations,
+            2438 strings with 67854 characters,
+and the built_in function-call counts, 1697944 in all, are:
+= -- 149836
+> -- 20811
+< -- 5996
++ -- 53286
+- -- 8291
+* -- 124376
+:= -- 201771
+add.period$ -- 0
+call.type$ -- 143
+change.case$ -- 0
+chr.to.int$ -- 225
+cite$ -- 284
+duplicate$ -- 172246
+empty$ -- 140605
+format.name$ -- 12731
+if$ -- 337908
+int.to.chr$ -- 0
+int.to.str$ -- 433
+missing$ -- 0
+newline$ -- 6984
+num.names$ -- 8400
+pop$ -- 55198
+preamble$ -- 1
+purify$ -- 5062
+quote$ -- 0
+skip$ -- 36676
+stack$ -- 0
+substring$ -- 288474
+swap$ -- 28626
+text.length$ -- 3942
+text.prefix$ -- 8
+top$ -- 1
+type$ -- 4849
+warning$ -- 0
+while$ -- 23939
+width$ -- 0
+write$ -- 6842
+(There were 10 error messages)

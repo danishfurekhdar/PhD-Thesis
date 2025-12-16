@@ -1,0 +1,72 @@
+\babel@toc {american}{}\relax 
+\vspace {-\cftbeforepartskip }
+\babel@toc {american}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {american}{}\relax 
+\contentsline {chapter}{\numberline {1}{Introduction}}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}{Background and Context}}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}{Historical Development of Strong Field Ionization}}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}{Overview of Strong Field Ionization}}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}{Fundamental Principles}}{4}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}{Applications in Modern Physics}}{5}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}{Above-Threshold Ionization: Concepts and Significance}}{7}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}{Experimental Observations and Implications}}{7}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}{Theoretical Approaches of ATI}}{9}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}{Structure of the Thesis}}{11}{section.1.5}%
+\contentsline {chapter}{\numberline {2}{Light Field and Its Properties}}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}{Maxwell’s Equations and Electromagnetic Waves}}{13}{section.2.1}%
+\contentsline {section}{\numberline {2.2}{Plane Waves Solution}}{15}{section.2.2}%
+\contentsline {section}{\numberline {2.3}{Twisted Light Beams: Orbital Angular Momentum and Phase Structure}}{17}{section.2.3}%
+\contentsline {section}{\numberline {2.4}{Few-Cycle Pulses: Temporal and Spectral Properties}}{20}{section.2.4}%
+\contentsline {chapter}{\numberline {3}{The Strong Field Approximation}}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}{Theoretical Foundations}}{23}{section.3.1}%
+\contentsline {section}{\numberline {3.2}{Interaction in Velocity and Length Gauge}}{27}{section.3.2}%
+\contentsline {section}{\numberline {3.3}{Dipole Approximation and Beyond in Laser–Atom Interaction}}{29}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}{Formulation in the Dipole Approximation}}{29}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}{Breakdown of the Dipole Approximation in Strong Fields}}{34}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}{Extensions to Nondipole Effects}}{36}{subsection.3.3.3}%
+\contentsline {chapter}{\numberline {4}{Mathematical Tools and Techniques for Strong Field Ionization}}{39}{chapter.4}%
+\contentsline {section}{\numberline {4.1}{Jacobi-Anger expansion}}{40}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}{Implementation for Plane Wave in Dipole Approximation}}{40}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}{Implementation for Plane Wave in Nondipole Approximation}}{42}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}{Saddle Point Approximation}}{42}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}{Introduction to the Stationary Phase Method}}{44}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}{Complex-Time Solutions and their Physical Meaning}}{45}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}{Validity and Limitations of the Saddle Point Approximation}}{47}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}{Numerical Implementation}}{47}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}{Root-Finding Algorithms for Saddle Points}}{48}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}{Newton-Raphson and Iterative Methods}}{49}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}{Stability and Convergence of Complex-Time Roots}}{51}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}{Computation of Momentum Distributions}}{52}{section.4.4}%
+\contentsline {chapter}{\numberline {5}{Results and Discussion}}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}{Ionization in few-cycle pulse}}{57}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}{Energy-Resolved Ionization Patterns in Strong Fields}}{60}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}{Polarization-Dependent Electron Dynamics}}{61}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}{Nonlinear Interference in Strong-Field Ionization}}{64}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}{Interference Patterns in ATI Peaks and Photoelectron Momentum Distributions}}{65}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}{Role of Volkov Phases in Interference Phenomena}}{67}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}{Nondipole Effects in Few-Cycle Pulses}}{68}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}{Laser Parameter Dependencies}}{70}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}{Wavelength-Scaling of Nondipole Phenomena}}{73}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}{Pulse-Cycle Dependence in Non-Dipole ATI Dynamics}}{74}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}{Strong-Field Ionization with Twisted Beams}}{75}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}{Electric Field Dynamics and Corresponding Saddle Points in Bessel Pulses}}{76}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}{Role of Orbital Angular Momentum in Ionization Dynamics}}{78}{subsection.5.4.2}%
+\contentsline {chapter}{\numberline {6}{Conclusion and Outlook}}{83}{chapter.6}%
+\contentsline {section}{\numberline {6.1}{Summary of Key Findings}}{83}{section.6.1}%
+\contentsline {section}{\numberline {6.2}{Future Directions}}{84}{section.6.2}%
+\contentsline {part}{\numberline {i}{Appendix}}{89}{part.1}%
+\contentsline {chapter}{\numberline {A}{Derivations in Dipole Approximation}}{91}{appendix.A}%
+\contentsline {section}{\numberline {A.1}{Plane Wave Pulse}}{91}{section.A.1}%
+\contentsline {section}{\numberline {A.2}{Dipole Volkov Phase for elliptically polarized plane wave pulse}}{92}{section.A.2}%
+\contentsline {paragraph}{{Case A: Diagonal Terms ($i=j$)}}{94}{paragraph*.38}%
+\contentsline {paragraph}{{Case B: Off-Diagonal Terms ($i \neq j$)}}{94}{paragraph*.39}%
+\contentsline {section}{\numberline {A.3}{Transition Amplitude in Dipole Approximation}}{96}{section.A.3}%
+\contentsline {section}{\numberline {A.4}{Dipole Volkov Phase for a Bessel Pulse}}{98}{section.A.4}%
+\contentsline {chapter}{\numberline {B}{Derivations in Nondipole Approximation}}{101}{appendix.B}%
+\contentsline {chapter}{\numberline {C}{Modified Saddle Point Method for Ionization Amplitudes}}{105}{appendix.C}%
+\vspace {\beforebibskip }
+\contentsline {chapter}{\numberline {}{Bibliography}}{109}{section*.40}%
+\contentsline {chapter}{\numberline {}{Declaration}}{127}{section*.41}%
+\contentsline {chapter}{\numberline {}{Curriculum Vitae}}{131}{section*.42}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

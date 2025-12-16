@@ -1,0 +1,213 @@
+% **************************************************************************************************************
+% A Classic Thesis Style
+% An Homage to The Elements of Typographic Style
+%
+% Copyright (C) 2018 André Miede and Ivo Pletikosić
+%
+% If you like the style then I would appreciate a postcard. My address
+% can be found in the file ClassicThesis.pdf. A collection of the
+% postcards I received so far is available online at
+% http://postcards.miede.de
+%
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING.  If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+%
+% PLEASE SEE ALSO THE AUTHORS' NOTE REGARDING THIS LICENSE
+% IN THE DOCUMENTATION (ClassicThesis.pdf --> Chapter 1 / Chapter01.tex)
+% **************************************************************************************************************
+\RequirePackage{silence} % :-\
+    \WarningFilter{scrreprt}{Usage of package `titlesec'}
+    %\WarningFilter{scrreprt}{Activating an ugly workaround}
+    \WarningFilter{titlesec}{Non standard sectioning command detected}
+\documentclass[ twoside,openright,titlepage,numbers=noenddot,%1headlines,
+                headinclude,cleardoublepage=empty,abstract=on,
+                BCOR=5mm,paper=a4,fontsize=12pt
+                ]{scrreprt}
+
+%********************************************************************
+% Note: Make all your adjustments in here
+%*******************************************************
+\input{classicthesis-config}
+%\usepackage[left=3.5cm,right=3cm,top=2.5cm,bottom=4cm]{geometry}
+%\geometry{left=35mm, right=30mm, top=35mm, bottom=40mm} %From master thesis
+%\usepackage[left=3.0cm,right=2.5cm,top=2.5cm,bottom=3cm]{geometry}
+\usepackage[left=3.1cm,right=2.2cm,top=2.5cm,bottom=2.8cm]{geometry}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+
+
+
+
+% Julia language definition for listings package
+\lstdefinelanguage{Julia}{
+  morekeywords={
+    abstract, break, case, catch, const, continue, do, else, elseif,
+    end, export, false, for, function, immutable, import, importall, if, in,
+    macro, module, otherwise, quote, return, switch, true, try, type, typealias,
+    using, while
+  },
+  sensitive = true,
+  alsoother = {$},
+  morecomment = [l]\#,
+  morecomment = [n]{\#=}{=\#},
+  morestring = [s]{"}{"},
+  morestring = [m]{'}{'},
+}[keywords, comments, strings]
+
+% Julia code styling
+\lstset{
+  language         = Julia,
+  basicstyle       = \ttfamily,
+  keywordstyle     = \bfseries\color{blue},
+  stringstyle      = \color{magenta},
+  commentstyle     = \color{ForestGreen},
+  showstringspaces = false,
+}
+
+
+
+\onehalfspacing 
+%\linespread{1.5}
+%https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
+
+%----------------------------------------------------
+%  Enable cv stuff
+%----------------------------------------------------
+\usepackage{pdfpages}
+\usepackage{marginnote}
+%\reversemarginpar % Move the margin to the left of the page
+
+\usepackage[LabelsAligned]{currvita} % Use the currvita style for the layout of the document
+\newcommand{\MarginText}[1]{\marginpar{\raggedright \textsc \small#1}}
+\renewcommand{\cvheadingfont}{\LARGE\color{Maroon}} % Font color of your name at the top
+
+\newlength{\datebox}\settowidth{\datebox}{Sept 2015-Present} % Set the width of the date box in each block
+
+\newcommand{\NewEntry}[3]{\noindent\hangindent=2em\hangafter=0 \parbox{\datebox}{\small \textit{#1}}\hspace{1.5em} #2 #3 % Define a command for each new block - change spacing and font sizes here: #1 is the left margin, #2 is the italic date field and #3 is the position/employer/location field
+\vspace{0.5em}} % Add some white space after each new entry
+\newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{0.5em}} % Define a command for descriptions of each entry - change spacing and font sizes here 
+
+
+
+%********************************************************************
+% LaTex - abbreviations
+%*******************************************************
+\newcommand{\A}{\mathbf{A}}
+\renewcommand{\a}{\mathbf{a}}
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\eps}{\boldsymbol{\varepsilon}}
+\newcommand{\ev}{\mathbf{e}}
+\renewcommand{\k}{\mathbf{k}}
+\newcommand{\B}{\mathbf{B}}
+\renewcommand{\b}{\mathbf{b}}
+\newcommand{\p}{\mathbf{p}}
+\renewcommand{\r}{\mathbf{r}}
+
+\newcommand{\Ak}{A_{0,\k}}
+\newcommand{\Akp}{A_{0,\k'}}
+\newcommand{\epsk}{\varepsilon_{\k}}
+\newcommand{\epskp}{\varepsilon_{\k'}}
+\newcommand{\eonek}{\ev_{1,\k}}
+\newcommand{\etwok}{\ev_{2,\k}}
+\newcommand{\eonekp}{\ev_{1,\k'}}
+\newcommand{\etwokp}{\ev_{2,\k'}}
+
+\newcommand{\uk}{u_{\k}}
+\newcommand{\etak}{\eta_{\k}}
+
+\def\bbred#1{\textcolor{red}{#1}}
+\def\bbgreen#1{\textcolor{green}{#1}}
+\def\missref#1{\textcolor{blue}{Ref: #1}}
+\def\bm#1{\mathbf{#1}}
+
+%********************************************************************
+% Bibliographies
+%*******************************************************
+\addbibresource{Bibliography.bib}
+
+%********************************************************************
+% Hyphenation
+%*******************************************************
+%\hyphenation{put special hyphenation here}
+
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%*******************************************************
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{american} % american ngerman
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
+\pagenumbering{roman}
+\pagestyle{plain}
+%********************************************************************
+% Frontmatter
+%*******************************************************
+\include{FrontBackmatter/Titlepage}
+\include{FrontBackmatter/Titleback}
+\cleardoublepage\include{FrontBackmatter/Dedication}
+%\cleardoublepage\include{FrontBackmatter/Foreword}
+\cleardoublepage\include{FrontBackmatter/Abstract}
+\cleardoublepage\include{FrontBackmatter/Publications}
+\cleardoublepage\include{FrontBackmatter/Acknowledgments}
+\cleardoublepage\include{FrontBackmatter/Contents}
+%********************************************************************
+% Mainmatter
+%*******************************************************
+\cleardoublepage
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+%\setcounter{page}{90}
+% use \cleardoublepage here to avoid problems with pdfbookmark
+\cleardoublepage
+
+%\chapter[TITLE IN TOC]{TITLE IN TEXT}
+%\chaptermark{TITLE IN HEADER LINE}
+%-----------------------------------------include chapters-------------------------------------------
+\include{Chapters/Introduction}
+\include{Chapters/Light Field}
+\include{Chapters/Theoretical Framework}
+\include{Chapters/Mathematical Tools}
+\include{Chapters/Results and Discussion}
+\include{Chapters/Conclusion and Outlook}
+
+% ********************************************************************
+% Backmatter
+%*******************************************************
+\appendix
+%\renewcommand{\thechapter}{\alph{}}
+%\cleardoublepage
+\part{Appendix}
+\include{Chapters/Appendix}
+%********************************************************************
+% Other Stuff in the Back
+%*******************************************************
+\cleardoublepage\include{FrontBackmatter/Bibliography}
+\cleardoublepage\include{FrontBackmatter/Declaration}
+%Insert CV here in the next line.
+\cleardoublepage\include{FrontBackmatter/CurriculumVitae}
+%\cleardoublepage\include{FrontBackmatter/Colophon}
+% ********************************************************************
+% Game Over: Restore, Restart, or Quit?
+%*******************************************************
+\end{document}
+% ********************************************************************
