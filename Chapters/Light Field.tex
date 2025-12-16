@@ -1,0 +1,213 @@
+\chapter{Light Field and Its Properties}
+\label{sec:light_field}
+
+The study of light fields is central to understanding strong field ionization, a process in which atoms or molecules are ionized by intense laser fields. This chapter provides a foundation for the interaction of light with matter, starting with Maxwell's equations, which govern the behavior of electromagnetic waves. We then discuss plane waves, twisted light beams, few-cycle pulses, and the role of the carrier-envelope phase, all of which are critical for modeling and interpreting strong field ionization experiments.
+
+\section{Maxwell’s Equations and Electromagnetic Waves}
+	The interaction of intense laser fields with atomic systems demands a robust and comprehensive mathematical framework, which is elegantly provided by Maxwell's equations \cite{Maxwell1865}. These equations serve as the cornerstone for describing the behavior of electromagnetic fields in a vacuum and are indispensable for understanding the intricate dynamics of light. In the absence of external charges or currents, the electric field \(\mathbf{E}(\mathbf{r}, t)\) and the magnetic field \(\mathbf{B}(\mathbf{r}, t)\) satisfy the following set of conditions, derived directly from Maxwell's equations \cite{Jackson1999}
+	\begin{align}
+		\nabla \cdot \mathbf{E}(\mathbf{r}, t) &= 0, \label{eq:divE} \\
+		\nabla \times \mathbf{E}(\mathbf{r}, t) &= -\frac{\partial \mathbf{B}(\mathbf{r}, t)}{\partial t}, \label{eq:curlE} \\
+		\nabla \cdot \mathbf{B}(\mathbf{r}, t) &= 0, \label{eq:divB} \\
+		\nabla \times \mathbf{B}(\mathbf{r}, t) &= \frac{1}{c^2} \frac{\partial \mathbf{E}(\mathbf{r}, t)}{\partial t}, \label{eq:curlB}
+	\end{align}
+	where \(c\) represents the speed of light in a vacuum. For practical applications, particularly in computational modeling, it is often advantageous to express the electric and magnetic fields in terms of scalar and vector potentials, denoted as \(\phi(\mathbf{r}, t)\) and \(\mathbf{A}(\mathbf{r}, t)\), respectively. These potentials are defined as follows:
+	\begin{equation}
+		\mathbf{E}(\mathbf{r}, t) = -\nabla \phi(\mathbf{r}, t) - \frac{\partial \mathbf{A}(\mathbf{r}, t)}{\partial t}, \qquad
+		\mathbf{B}(\mathbf{r}, t) = \nabla \times \mathbf{A}(\mathbf{r}, t).
+		\label{eq:EandBfield}
+	\end{equation}
+	Although the physical fields \(\mathbf{E}(\mathbf{r}, t)\) and \(\mathbf{B}(\mathbf{r}, t)\) are uniquely determined by the potentials \(\phi(\mathbf{r}, t)\) and \(\mathbf{A}(\mathbf{r}, t)\), the potentials themselves are not unique due to the inherent gauge freedom in the theory. This freedom allows for the introduction of an arbitrary scalar function, known as the gauge function \(\lambda(\mathbf{r}, t)\), which can be used to redefine the potentials without altering the physical fields. The gauge transformations are given by:
+	\begin{align}
+		\phi'(\mathbf{r}, t) &= \phi(\mathbf{r}, t) - \frac{\partial \lambda(\mathbf{r}, t)}{\partial t}, \label{eq:phiGauge} \\
+		\mathbf{A}'(\mathbf{r}, t) &= \mathbf{A}(\mathbf{r}, t) + \nabla \lambda(\mathbf{r}, t). \label{eq:AGauge}
+	\end{align}
+	These transformations, known as gauge transformations, leave the physical fields invariant and play a pivotal role in various branches of physics. To uniquely specify the potentials, additional constraints, known as gauge conditions, must be imposed. One of the most commonly used gauges in electrodynamics is the Coulomb gauge, defined by the following conditions:
+	\begin{equation}
+		\nabla \cdot \mathbf{A}(\mathbf{r}, t) = 0, \qquad\phi(\mathbf{r}, t) = 0. \label{eq:CoulombGauge}
+	\end{equation}
+	In the Coulomb gauge, the scalar potential \(\phi(\mathbf{r}, t)\) is eliminated due to the absence of free charges, simplifying Maxwell's equations significantly. Under this gauge, the vector potential \(\mathbf{A}(\mathbf{r}, t)\) satisfies the wave equation
+	\begin{equation}
+		\nabla^2 \mathbf{A}(\mathbf{r}, t) - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}(\mathbf{r}, t)}{\partial t^2} = 0. \label{eq:WaveEquation}
+	\end{equation}
+	Electromagnetic waves in a vacuum can be represented as a superposition of monochromatic waves, each of which is a solution to the wave equation. For a monochromatic vector potential corresponding to a single light wave, the solution can be expressed as:
+	\begin{equation}
+		\mathbf{A}(\mathbf{r}, t) = \Re \left[ \mathbf{A}(\mathbf{r}) e^{-i\omega t} \right], \label{eq:MonoWave}
+	\end{equation}
+	where \(\omega\) is the angular frequency of the wave and \(\Re\) stands for Real. Substituting this form into the wave equation yields the Helmholtz equation for the vector potential
+	\begin{equation}
+		(\nabla^2 + k^2) \mathbf{A}(\mathbf{r}) = 0, \label{eq:Helmholtz}
+	\end{equation}
+	where \(k = \omega/c\) is the wave number. The wave number \(k\) is related to the momentum of the electromagnetic wave, and the momentum operator in quantum mechanics is given by \(\mathbf{p} = -i\hbar\nabla\). The spatial structure of the vector potential \(\mathbf{A}(\mathbf{r})\) plays a crucial role in determining the characteristics of the associated laser fields. 
+	
+	If \(\mathbf{A}(\mathbf{r})\) is spatially constant, implying no spatial variation, the derived momentum \(\mathbf{p}\mathbf{A}(\mathbf{r}) = k\mathbf{A}(\mathbf{r})\) vanishes, leading to \(k = 0\). This scenario results in an unphysical situation where the magnetic field disappears entirely. To address spatially structured light fields formally, we refer to the definition of the wave number and the dispersion relation \(k = \omega/c\), which ensures that oscillating light fields cannot maintain a consistent spatial structure across different media.
+	
+	In many practical scenarios, particularly in the study of atom-light interactions, the spatial dependence of the fields is often negligible. This simplification leads to the use of the dipole approximation. While this approximation is valid under certain conditions, it can break down in situations where the effects of magnetic fields or photon momentum become significant. These considerations are critical and must be carefully accounted for in both classical electrodynamics and quantum mechanics.
+	
+
+
+\section{Plane Waves Solution}
+The vector potential \(\mathbf{A}(\mathbf{r})\) for a transverse plane wave is a fundamental solution to the Helmholtz equation, as presented in Eq. \ref{eq:Helmholtz}. It is expressed in the following form
+\begin{equation}
+	\mathbf{A}(\mathbf{r}) = A_0 \; e^{i\mathbf{k} \cdot \mathbf{r}} \; \symbf{\epsilon}, \label{eq:VectorPotential}
+\end{equation}
+where \(A_0\) represents the amplitude of the electromagnetic field, \(\mathbf{k} = k \mathbf{e}_z\) is the wave vector pointing in the \(z\)-direction, and \(\symbf{\epsilon}\) is the polarization vector. The polarization vector is defined as
+\begin{equation}
+	\symbf{\epsilon} = \frac{1}{\sqrt{1 + \varepsilon^2}} (\mathbf{e}_z + i\varepsilon \mathbf{e}_y). \label{eq:PolarizationVector}
+\end{equation}
+Here, \(\varepsilon\) quantifies the ellipticity of the plane wave, and \(\lambda\) denotes its helicity. This dissertation primarily focuses on transverse plane waves, often referred to simply as "plane waves." These waves are characterized by their wavelength \(\lambda\), field amplitude \(A_0\), and ellipticity \(\varepsilon\).  The intensity of the field is a critical property of plane waves and can be calculated using the cycle-averaged Poynting vector \cite{Saleh1991}, defined as
+\begin{equation}
+	\mathbf{P} = \frac{1}{\mu_0} \mathbf{E}(\mathbf{r}, t) \times \mathbf{B}(\mathbf{r}, t). \label{eq:PoyntingVector}
+\end{equation}
+The corresponding intensity is given by:
+\begin{equation}
+	I(\mathbf{r}, t) = \frac{1}{T} \left| \int_{t}^{t+T} d\tau \, \mathbf{P}(\mathbf{r}, t) \right|, \label{eq:IntensityIntegral}
+\end{equation}
+which evaluates to
+\begin{equation}
+	I(\mathbf{r}, t) = \frac{A_0^2 \omega^3 c}{8 \pi^2 (1 + \varepsilon^2)} \int_{t}^{t+T} d\tau \left( \sin^2 (kz - \omega t) + \varepsilon^2 \cos^2 (kz - \omega t) \right) = \frac{A_0^2 \omega^2 c}{8\pi}. \label{eq:IntensityResult}
+\end{equation}
+Under the Coulomb gauge, the cycle-averaged intensity simplifies significantly. In this gauge, the electric field amplitude is constrained to \(E_0 = -A_0 \omega\), assuming the electric and magnetic fields are derived from Eqs. \ref{eq:EandBfield} and \ref{eq:CoulombGauge}.
+
+For more complex scenarios, such as the superposition of plane-wave beams \cite{Pisanty2018,Fritzsche2022}, it is advantageous to generalize the definition of the vector potential using an orthonormal basis \(\{ \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_k \}\). A general monochromatic plane wave is defined as
+\begin{equation}
+    \mathbf{A}(\mathbf{r}, t) = \Re \left[ A_0 e^{i(\mathbf{r} \cdot \mathbf{k} - \omega t)} \symbf{\epsilon} \right],
+	\label{Eq: Monochromatic}
+\end{equation}
+where $\symbf{\epsilon}$ is the complex polarization vector.
+We choose an orthonormal basis $\{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_k\}$, where $\mathbf{e}_k = \hat{\mathbf{k}}$, such that the polarization vector $\symbf{\epsilon}$ is given by Eq. \ref{eq:PolarizationVector}.
+With this generalization, the full vector potential corresponding to Eq. \ref{Eq: Monochromatic} can be written as
+\begin{equation}
+	\mathbf{A}(\mathbf{r}, t) = \frac{A_0}{\sqrt{1+\varepsilon^2}} \left( \cos (\mathbf{k} \cdot \mathbf{r} - \omega t) \mathbf{e}_1 - \varepsilon \Lambda \sin (\mathbf{k} \cdot \mathbf{r} - \omega t) \mathbf{e}_2 \right). \label{eq:GeneralVectorPotential}
+\end{equation}
+To gain deeper physical insight, it is useful to focus on the case of circular polarization (\(\varepsilon = 1\)) and explore the significance of the helicity parameter \(\Lambda\). Matula et al. \cite{Matula2013} describe the propagation direction of a plane-wave beam using the unit wave vector
+\begin{equation}
+	\mathbf{e}_k =
+	\begin{pmatrix}
+		\sin \vartheta_k \cos \varphi_k \\
+		\sin \vartheta_k \sin \varphi_k \\
+		\cos \vartheta_k
+	\end{pmatrix}, \label{eq:WaveVector}
+\end{equation}
+where \(\vartheta_k\) and \(\varphi_k\) denote the polar and azimuthal angles of the wave vector \(\mathbf{k}\), respectively. In accordance with the Coulomb gauge condition \(\symbf{\epsilon} \cdot \mathbf{k} = 0\), the polarization vector remains perpendicular to the wave vector and is expressed as:
+
+\begin{equation}
+    \symbf{\epsilon}_{k\Lambda} = -\frac{\Lambda}{\sqrt{2}}
+	\begin{pmatrix}
+		\cos \vartheta_k \cos \varphi_k - i\Lambda \sin \varphi_k \\
+		\cos \vartheta_k \sin \varphi_k + i\Lambda \cos \varphi_k \\
+		-\sin \vartheta_k
+	\end{pmatrix}. \label{eq:PolarizationVectorGeneral}
+\end{equation}
+
+To facilitate further analysis, the polarization vector is often expanded in terms of spin-momentum basis states:
+
+\begin{equation}
+	\symbf{\epsilon}_{k\Lambda} = \sum_{m_s=0,\pm1} c_{m_s} e^{-i m_s \varphi_k} \symbf{\eta}_{m_s}, \label{eq:SpinMomentumExpansion}
+\end{equation}
+
+where the eigenstates of the spin operator \(\hat{S}_z\) satisfy:
+
+\begin{equation}
+	\hat{S}_z \symbf{\eta}_{m_s} = m_s \symbf{\eta}_{m_s}, \quad
+	\symbf{\eta}_{\pm1} = \frac{\pm 1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\ \pm i \\ 0
+	\end{pmatrix}, \quad
+	\symbf{\eta}_0 =
+	\begin{pmatrix}
+		0 \\ 0 \\ 1
+	\end{pmatrix}. \label{eq:SpinEigenstates}
+\end{equation}
+
+The expansion coefficients are given by \( c_0 = \frac{\Lambda}{\sqrt{2}} \sin \vartheta_k \) and \( c_{\pm1} = \frac{1}{2} (1 \pm \Lambda \cos \vartheta_k) \). By setting \(\vartheta_k = 0\) and \(\varphi_k = 0\), the wave vector aligns with the optical axis (\(z\)-axis), and the helicity \(\Lambda\) corresponds to the photon's spin projection onto its momentum direction \cite{Matula2013}.
+
+In the case of elliptically polarized laser fields (\(\varepsilon \neq 1\)), such fields can be decomposed into a superposition of circularly polarized plane waves. Although the spin-photon interpretation originates from circular polarization, it remains valid for more generalized elliptically polarized waves.
+
+In summary, monochromatic plane-wave beams are characterized by their wavelength \(\lambda = 2\pi c / \omega\), helicity \(\Lambda = \pm1\), ellipticity \(0 \leq \varepsilon \leq 1\), and intensity \(I\). These properties provide a comprehensive framework for analyzing and understanding the behavior of plane waves in various physical contexts.
+
+\section{Twisted Light Beams: Orbital Angular Momentum and Phase Structure}
+While plane waves represent the simplest form of electromagnetic waves, their structure is limited in complexity. In contrast, twisted light beams exhibit a richer spatial profile, characterized by helical phase fronts that rotate around the propagation axis. These beams carry not only spin angular momentum (SAM) but also orbital angular momentum (OAM), making them a fascinating subject of study in modern optics. Among these, Bessel beams stand out as a unique class of non-diffractive solutions to the wave equation, offering intriguing properties and applications.
+
+Bessel beams are monochromatic solutions to the wave equation, derived from the Helmholtz equation. Unlike plane waves, Bessel beams are eigenfunctions of the total angular momentum (TAM) operator \(\hat{J}_z\), which combines spin and orbital angular momentum  $\hat{J}_z = \hat{S}_z + \hat{L}_z, \quad \text{with} \quad \hat{L}_z = -i \frac{\partial}{\partial \varphi}$.  The eigenvalue equation for the TAM operator is given by
+\begin{equation}
+    \hat{J}_z \mathbf{A}(\mathbf{r}) = m_{\gamma} \mathbf{A}(\mathbf{r}), \label{eq:TAMEigenvalue}
+\end{equation}
+where \(m_{\gamma}\) represents the total angular momentum projection of the beam. Additionally, Bessel beams possess a well-defined longitudinal momentum component \(k_z\), satisfying:
+\begin{equation}
+    \hat{p}_z^2 \mathbf{A}(\mathbf{r}) = k_z^2 \mathbf{A}(\mathbf{r}). \label{eq:LongitudinalMomentum}
+\end{equation}
+The transverse momentum modulus \(k_{\perp}\) is related to the total wave number \(k\) and the longitudinal component \(k_z\) by $k_{\perp}= |\mathbf{k_{\perp}}| = \varkappa = \sqrt{k^2 - k_z^2}$. This relationship ensures that the wave vectors \(\mathbf{k}\) of the plane wave lie on a cone in momentum space, with an opening angle \(\vartheta_k = \arctan(k_{\perp}/k_z)\).
+\begin{figure}
+	\centering
+	\includegraphics[width=1.\textwidth]{gfx/Final/Theory/bessel.pdf}
+\caption{Illustration of the properties of Bessel beams. (a) The phase fronts of the beam exhibit a helical structure, spiraling around the central axis. (b)  A Bessel beam is generated through the superposition of circularly polarized plane waves, with wave vectors $\mathbf{k}$ distributed on a conical surface defined by the angle $\vartheta_k = \arctan(\varkappa/k_z)$. (c) The transverse intensity distribution of a Bessel beam displays a central null intensity at the beam axis ($x = y = 0$) and an infinite series of concentric rings. The intensity profile is normalized to the maximum intensity for a beam with parameters $\lambda = 800\, \text{nm}$, $\vartheta_k = 20^\circ$, $\Lambda = +1$, and $m_{\gamma} = 2$.}
+	\label{fig:bessel}
+\end{figure}
+
+The vector potential \(\mathbf{A}(\mathbf{r})\) of a Bessel beam can be constructed as a superposition of circularly polarized plane waves. Each plane-wave component is weighted by an amplitude function \(a_{\varkappa m_{\gamma}}(\mathbf{k}_{\perp})\), which depends on the transverse momentum \(\mathbf{k}_{\perp}\) and the TAM projection \(m_{\gamma}\). The general form of the vector potential is
+\begin{equation}
+    \mathbf{A}(\mathbf{r}) = \frac{A_0}{(2\pi)^2} \int \mathrm{d}^2 k_{\perp} \, a_{\varkappa m_{\gamma}}(k_{\perp}) \, \symbf{\epsilon}_{k\Lambda} \, e^{i \mathbf{k} \cdot \mathbf{r}}, \label{eq:BesselSuperposition}
+\end{equation}
+where \(\symbf{\epsilon}_{k\Lambda}\) is the polarization vector for helicity \(\Lambda = \pm1\). The amplitude function is given by
+\begin{equation}
+    a_{\varkappa m_{\gamma}}(\mathbf{k}_{\perp}) = \sqrt{\frac{2\pi}{\varkappa}} (-i)^{m_{\gamma}} e^{i m_{\gamma} \varphi_k} \delta(k_{\perp} - \varkappa). \label{eq:AmplitudeWeight}
+\end{equation}
+Here, the Dirac delta function \(\delta(k_{\perp} - \varkappa)\) ensures that all contributing wave vectors lie on the momentum cone, as shown in Fig. \ref{fig:bessel}(b).
+
+In position space, the vector potential \(\mathbf{A}(\mathbf{r})\) is expressed in cylindrical coordinates \((r, \varphi_r, z)\) using Bessel functions of the first kind, \(J_n(x)\). The expansion of \(\mathbf{A}(\mathbf{r})\) in terms of spin-momentum eigenstates \(\symbf{\eta}_{m_s}\) yields
+\begin{equation}
+    \mathbf{A}(\mathbf{r}) = \sum_{m_s=0,\pm1} A_{m_s}(\mathbf{r}) \symbf{\eta}_{m_s}, \label{eq:VectorPotentialExpansion}
+\end{equation}
+where the components \(A_{m_s}(\mathbf{r})\) are given by
+\begin{equation}
+    A_{m_s}(\mathbf{r}) = \sqrt{\frac{\varkappa}{2\pi}} (-i)^{m_s} c_{m_s} J_{m_{\gamma} - m_s} (\varkappa r) e^{i(m_{\gamma} - m_s) \varphi_r} e^{i k_z z}. \label{eq:AmplitudeComponents}
+\end{equation}
+This representation highlights the helical phase structure of Bessel beams, with the phase fronts determined by the exponential term \((m_{\gamma} - m_s) \varphi_r + k_z z\).
+The intensity profile of a Bessel beam is derived from the longitudinal component of the Poynting vector \(\mathbf{S}(\mathbf{r}, t)\). The transverse intensity distribution \(I_{\perp}(\mathbf{r})\) is given by \cite{Surzhykov2016}
+\begin{equation}
+    I_{\perp} (\mathbf{r}) = \frac{\omega^2 \varkappa}{4\pi} \left| c_{+1}^2 J_{m_{\gamma} - 1}^2 (\varkappa r) - c_{-1}^2 J_{m_{\gamma} + 1}^2 (\varkappa r) \right|. \label{eq:BesselIntensity}
+\end{equation}
+This expression reveals the non-diffractive nature of Bessel beams, as their intensity profile remains invariant along the propagation axis, as illustrated in Fig. \ref{fig:bessel}(c). Mathematically, the characteristic ring-like structure of the intensity distribution arises from the properties of Bessel functions.
+
+In the paraxial regime, where the transverse momentum \(k_{\perp}\) is much smaller than the longitudinal component \(k_z\), the vector potential simplifies significantly. Under this approximation, only the term with \(m_s = \Lambda\) contributes, leading to
+\begin{equation}
+    \mathbf{A}(\mathbf{r}) \approx \sqrt{\frac{\varkappa}{2\pi}} (-i)^\Lambda c_{\Lambda} J_{m_{\gamma}-\Lambda} (\varkappa r) e^{i (m_{\gamma} - \Lambda) \varphi_r} e^{i k_z z} \symbf{\eta}_{\Lambda}. \label{eq:ParaxialBessel}
+\end{equation}
+This form explicitly demonstrates the separation of spin and orbital angular momentum in the paraxial limit
+\begin{equation}
+    \hat{S}_z \; \mathbf{A}(\mathbf{r}) = \Lambda \; \mathbf{A}(\mathbf{r}), \qquad \hat{L}_z \;\mathbf{A}(\mathbf{r}) = (m_{\gamma} - \Lambda) \; \mathbf{A}(\mathbf{r}). \label{eq:SpinOrbitalEigenvalues}
+\end{equation}
+ The term \(m_l = m_{\gamma} - \Lambda\) corresponds to the orbital angular momentum of the beam, which arises from the helical phase structure of the wavefronts. The phase fronts of the beam are determined by the equation $(m_{\gamma} - \Lambda) \varphi_k + k_z z = \text{const.}$ where \(\varphi_k\) is the azimuthal angle in momentum space. This equation describes the helical structure of the wavefronts, as illustrated in Fig. \ref{fig:bessel}(a). In the limit where the opening angle approaches to zero (\(\theta_k \to 0\)), the Bessel beam reduces to a plane wave with circular polarization (\(\varepsilon = 1\)).
+
+In the study of ATI processes driven by Bessel beams, it is often necessary to work with a real-valued expression for the vector potential. Conventionally, the imaginary part of the complex vector potential is used in the literature for twisted light beams \cite{Quinteiro2017,Paufler2018}. This choice does not affect the physical interpretation of the results and is adopted here for consistency. The Cartesian components of the real-valued vector potential are derived as follows \cite{Birger2018Aug}
+\begin{align}
+    A_x(\mathbf{r}, t) &= \sqrt{\frac{\varkappa}{4\pi}} \Big[ c_{-1} J_{m_{\gamma}+1} (\varkappa r) \cos \big((m_{\gamma} + 1) \varphi_r + k_z z - \omega t \big) \nonumber \\
+    &\quad + c_{+1} J_{m_{\gamma}-1} (\varkappa r) \cos \big((m_{\gamma} - 1) \varphi_r + k_z z - \omega t \big) \Big], \nonumber\\
+    A_y(\mathbf{r}, t) &= \sqrt{\frac{\varkappa}{4\pi}} \Big[ c_{-1} J_{m_{\gamma}+1} (\varkappa r) \sin \big((m_{\gamma} + 1) \varphi_r + k_z z - \omega t \big) \nonumber \\
+    &\quad - c_{+1} J_{m_{\gamma}-1} (\varkappa r) \sin \big((m_{\gamma} - 1) \varphi_r + k_z z - \omega t \big) \Big],\nonumber\\
+    A_z(\mathbf{r}, t) &= \sqrt{\frac{\varkappa}{2\pi}} c_0 J_{m_{\gamma}} (\varkappa r) \sin \big(m_{\gamma} \varphi_r + k_z z - \omega t \big). \label{eq:BesselBeam}
+\end{align}
+These expressions describe the spatial and temporal evolution of the vector potential in Cartesian coordinates. The terms \(c_{-1}\), \(c_{+1}\), and \(c_0\) are coefficients that depend on the spin and orbital angular momentum properties of the beam, while \(J_n(x)\) represents the Bessel functions of the first kind. The helical phase structure of the beam is evident in the trigonometric terms, which depend on the azimuthal angle \(\varphi_r\) and the propagation coordinate \(z\). The definitions of all the coefficients used above are provided in the Appendix \ref{Appendix:A4}.
+
+In summary, Bessel beams are characterized by their wavelength \(\lambda\), opening angle \(\vartheta_k\), helicity \(\Lambda\), total angular momentum projection \(m_{\gamma}\), and amplitude \(A_0\). These parameters determine the spatial and temporal properties of the beam, including its intensity profile and phase structure. 
+
+\section{Few-Cycle Pulses: Temporal and Spectral Properties}
+In experimental and theoretical studies of light-matter interactions, laser pulses of finite duration are often employed instead of continuous-wave (CW) laser fields. Finite-duration laser pulses are used because they allow for precise temporal control of light-matter interactions, enabling studies of ultrafast dynamics (e.g., electron motion, molecular vibrations, and chemical reactions) that occur on femtosecond or picosecond timescales. Unlike CW lasers, which are described by time-independent solutions to the wave equation, finite-duration pulses introduce a temporal dependence to the laser intensity. As illustrated in Fig. \ref{fig:Pulse_amplitude}, the left panel shows the time-domain representations of laser pulses with different cycle durations (2, 4, and 8 cycles). The corresponding frequency spectra, depicted in the right panel, demonstrate how shorter pulses result in broader frequency distributions, whereas longer pulses exhibit narrower spectral bandwidths. This temporal variation is critical in processes that are highly sensitive to changes in laser intensity, such as ATI and HHG.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{gfx/Final/Theory/Pulse_amplitude.pdf}
+	\caption{Time-domain representation of the total vector potential \( \symbf{A}(t) \) for a circularly polarized plane wave laser pulse is shown in the left panels, while in the right panel its corresponding frequency-domain representation, \( [\mathcal{F}(\symbf{A})](\omega) \). The plots include laser pulses with durations of two (red), four (blue), and eight (green) optical cycles, with a carrier-envelope phase of \( \varphi_{\mathrm{cep}} = 0 \) and a wavelength of 800 nm. The right panel’s vertical axis represents the absolute amplitude of the vector potential at a peak intensity of \( 5 \times 10^{14} \) W/cm\(^2\).}
+	\label{fig:Pulse_amplitude}
+\end{figure}
+The vector potential \(\mathbf{A}^{(P)}(\mathbf{r}, t)\) of a finite-duration laser pulse can be constructed by modifying the plane-wave solution with an envelope function \(f(t)\). This approach, as proposed by Milošević et al. \cite{Milosevic2006}, ensures that the pulse has a well-defined duration and temporal profile. To describe the temporal profile of the laser pulse, an envelope function \(f(t)\) is introduced. A commonly used envelope function is the sine-squared profile, which provides a smooth rise and fall of the pulse intensity. This function is defined as
+\begin{equation}
+    f(t) =
+    \begin{cases} 
+        \sin^2 \left( \frac{\omega t}{2 n_p} \right), & 0 \leq t \leq \tau_p, \\
+        0, & \text{otherwise},
+    \end{cases} \label{eq:EnvelopeFunction}
+\end{equation}
+where \(\tau_p\) is the total duration of the pulse, and \(n_p\) represents the number of optical cycles within the pulse. The pulse duration is related to the number of cycles by \(\tau_p = n_p T\), where \(T = 2\pi/\omega\) is the period of one optical cycle. The sine-squared envelope ensures that the pulse intensity smoothly transitions from zero to its maximum value and back to zero, minimizing abrupt changes that could lead to unwanted spectral broadening. In the limit of an infinitely long pulse (\(n_p \to \infty\)), the envelope function \(f(t)\) approaches unity for all times \(t\). In this case, the vector potential of a pulse reduces to the plane-wave solution. 
+
+In this chapter, we have formally defined the properties of the light field and derived the mathematical representations for plane waves, Bessel beams, and their corresponding pulsed variants. These formulations provide the foundation for our subsequent analysis. In the next chapter, we will apply these definitions to compute the Volkov phase—a key component in strong-field quantum electrodynamics. Specifically, we will derive explicit expressions for the Volkov phase using the field structures introduced here, enabling a rigorous treatment of electron dynamics in intense laser fields.

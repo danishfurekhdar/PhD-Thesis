@@ -1,0 +1,404 @@
+\chapter{Mathematical Tools and Techniques for Strong Field Ionization}
+\label{chap:math_tools}
+The quantum mechanical description of strong-field ionization revolves around calculating transition amplitudes between the initial bound state of an electron and its final Volkov continuum state in the laser field. Building on the derived Volkov phases for dipole and nondipole regimes (Chapter~\ref{chap:Theory}), we now address the core computational challenge: evaluating the time-dependent transition amplitude
+\begin{equation}
+    T_0(\mathbf{p}) = -i \int_{-\infty}^\infty \mathrm{d}\tau \, \langle \chi_{\mathbf{p}}(\tau) | V_{\mathrm{le}}(\mathbf{r}, \tau) | \psi_0(\tau) \rangle,
+    \label{eq:direct-term}
+\end{equation}
+where $\chi_{\mathbf{p}}(\tau)$ is the Volkov state with asymptotic momentum $\mathbf{p}$, $\psi_0(\tau)$ is the initial bound state, and $V_{\mathrm{le}}(\mathbf{r}, \tau)$ represents the laser-electron interaction potential. The oscillatory nature of the Volkov states encoded in their explicit time-dependent phase $e^{iS(\mathbf{p},\tau)}$ renders the integral highly oscillatory, demanding specialized analytical and numerical methods for practical evaluation.  
+As the operator $V_{le}= H_{le}-H_{A}+V(\mathbf{r})$, we can further simplify the direct amplitude by performing the integration by parts. Since the vector potential is nonzero within some interval $t_{i}\leq t\leq t_{f}$, together with the operator $V_{le}$, the original equation \ref{eq:direct-term} is modified to a more simplified form as
+\begin{equation}
+	\begin{aligned}
+		T_0(\mathbf{p})=&-\dot{\iota} \int_{t_{i}}^{t_{f}}d\tau \left( \langle \chi_{\mathbf{p}}(\tau)|\frac{\overleftarrow{\partial}}{\partial\tau}+\frac{\overrightarrow{\partial}}{\partial\tau}|\psi_{0}(\tau)\rangle \right)\\
+		&-\dot{\iota}\int_{t_{i}}^{t_{f}}d\tau \langle \chi_{\mathbf{p}}(\tau)|V(\mathbf{r})|\psi_{0}(\tau)\rangle \\
+		=&-\langle \chi_{\mathbf{p}}(\tau)|\psi_{0}(\tau)\rangle|^{t_{f}}_{t_{i}}-\dot{\iota}\int_{t_{i}}^{t_{f}}d\tau \langle \chi_{\mathbf{p}}(\tau)|V(\mathbf{r})|\psi_{0}(\tau)\rangle.
+	\end{aligned}
+	\label{Eq:modified-direct-term}
+\end{equation}
+This chapter develops the mathematical infrastructure to compute $T_0(\mathbf{p})$. Mainly we discuss two main approaches
+\begin{itemize}
+    \item \textit{Jacobi-Anger expansion}: Decomposes trigonometric nonlinearities in the Volkov phase into Bessel function series, isolating harmonic contributions.
+    \item \textit{Saddle point approximation}: Identifies dominant contributions to the integral from critical timescales in the complex plane.
+\end{itemize}
+The analysis of strong-field ionization processes requires sophisticated mathematical tools to handle the oscillatory integrals appearing in quantum transition amplitudes. Among these, the Jacobi-Anger expansion stands out as a particularly powerful technique for dealing with the trigonometric nonlinearities inherent in Volkov phase solutions.
+
+\section{Jacobi-Anger expansion}
+\label{subsec:math-foundations}
+
+The Jacobi-Anger expansion provides a harmonic decomposition of complex exponential with trigonometric arguments. At its core, the expansion converts the oscillatory phase factor $e^{iz\sin θ}$ and $e^{iz\cos θ}$ into an infinite series of angular harmonics weighted by Bessel functions of the first kind:
+
+\begin{equation}
+e^{\pm iz\sin θ} = \sum_{n=-\infty}^{\infty} J_n(z) e^{\pm inθ}, \qquad e^{\pm iz\cos θ} = \sum_{n=-\infty}^{\infty} (\pm i)^n J_n(z) e^{inθ}
+\end{equation}
+
+This transformation proves invaluable when working with the plane wave Volkov phase given in Equation~\ref{Eq:VolkovPhaseSol}, where multiple frequency components interact through their trigonometric dependencies. The Bessel functions $J_n(z)$ that appear as coefficients in this expansion possess several crucial properties that make them physically meaningful. Their asymptotic behavior for large orders shows that only certain photon number channels contribute significantly to the quantum dynamics, with the most important terms clustered around $n ≈ z$ in the strong-field regime.
+
+The convergence properties of this series deserve special attention. Unlike Taylor expansions, the Jacobi-Anger series converges absolutely for all arguments $z$ and  phases $θ$. This robust convergence behavior stems from the rapid decay of Bessel functions when the order $n$ exceeds the magnitude of the argument $|z|$. From a physical perspective, this mathematical property ensures that the infinite series can be safely truncated in practical calculations while maintaining controlled accuracy - a crucial feature for numerical implementations.
+
+\subsection{Implementation for Plane Wave in Dipole Approximation}
+\label{subsec:applications}
+
+When applied to the plane wave Volkov phase of Equation~\ref{Eq:VolkovPhaseSol}, the Jacobi-Anger expansion must address several distinct types of trigonometric terms. The linear polarization components proportional to $\sin(ω_i t)$ generate standard Bessel series expansions, while the elliptical polarization terms involving $\cos(ω_i t)$ require phase-shifted versions of the expansion. The cross-frequency terms present additional complexity, as they produce coupled expansions where different frequency components interact. The exponential \( e^{i S(\mathbf{p}, t)} \) in the dipole case can be expanded using the Jacobi-Anger formula as
+\begin{align}
+e^{-i S(\mathbf{p}, t)} &= \exp\left( -i \left( \frac{1}{2} \mathbf{p}^2 t + \frac{t}{4} \sum_{i=0}^{2} \mathcal{A}_i^2 \right) \right)\nonumber \\
+&\quad \times \prod_{i=0}^{2} \sum_{n_i = -\infty}^{\infty} J_{n_i}\left( \frac{1 - \epsilon^2}{1 + \epsilon^2} \frac{\mathcal{A}_i^2}{8\omega_i} \right) e^{-i n_i (2\omega_i t + 2\phi_{\mathrm{CEP}})} \nonumber \\
+&\quad \times \prod_{i=0}^{1} \prod_{j=i+1}^{2} \sum_{m_{ij} = -\infty}^{\infty} J_{m_{ij}}\left( \frac{\mathcal{A}_i \mathcal{A}_j}{2 (\omega_i - \omega_j)} \right) e^{-i m_{ij} (\omega_i - \omega_j)t} \nonumber\\
+&\quad \times \prod_{i=0}^{1} \prod_{j=i+1}^{2} \sum_{k_{ij} = -\infty}^{\infty} J_{k_{ij}}\left( \frac{1 - \epsilon^2}{1 + \epsilon^2} \frac{\mathcal{A}_i \mathcal{A}_j}{2 (\omega_i + \omega_j)} \right) e^{-i k_{ij} [(\omega_i + \omega_j)t + 2\phi_{\mathrm{CEP}}]}\nonumber \\
+&\quad \times \prod_{i=0}^{2} \sum_{\ell_i = -\infty}^{\infty} J_{\ell_i}\left( \frac{p_x \mathcal{A}_i}{\sqrt{1 + \epsilon^2} \omega_i} \right) e^{-i \ell_i (\omega_i t + \phi_{\mathrm{CEP}})} \nonumber\\
+&\quad \times \prod_{i=0}^{2} \sum_{q_i = -\infty}^{\infty} (-i)^{q_i} J_{q_i}\left( \epsilon \Lambda \frac{p_y \mathcal{A}_i}{\sqrt{1 + \epsilon^2} \omega_i} \right) e^{i q_i (\omega_i t + \phi_{\mathrm{CEP}})}.
+\end{align}
+This expansion dissolves the trigonometric functions in the exponent and makes it easier to carry the integration. Thus after inserting above expression in Eq.~\ref{Eq:modified-direct-term} and then applying the integration within the duration of the pulse \([0,\tau_p]\) we arrive at the final expression of the direct transition amplitude as
+\begin{eqnarray}
+	T^D_0(\mathbf{p}) = \prod_{i=1}^{15} \left\{ (-\dot\iota)^{n_i \Theta(i-12)}\right.&&\left.\sum_{n_i=-\infty}^{\infty} J_{n_i} (x_i^D) \left( \frac{\langle \mathbf{p} | V(\mathbf{r}) | \Psi_0 \rangle}{\epsilon_p + U_p + \Omega_{n_i}^D + I_p} + \langle \mathbf{p} | \Psi_0 \rangle \right) \right. \nonumber\\ 
+	&& \left. \times \left( 1 - e^{\dot\iota \left[\left(\epsilon_p + U_p + \Omega_{n_i}^D +I_p\right) \tau_p + \Phi_i^D\right]} \right) \right\},
+	\label{Eq:TransitionAmplitudeJacobi}
+\end{eqnarray}
+where \( \Theta(x) \) is the Heaviside step function which ensures that the extra factor \( i^{n_i} \) appears only for the last three terms (\( i \geq 13 \)), while it remains absent for the first 12 terms (\( i \leq 12 \)). Here we redefined the frequencies and phases in terms of \(\Omega\) and \(\Phi\) respectively and including \(x_i\) they are defined in the Appendix \ref{appendix-A}. The superscript D is introduced to distinguish this transition amplitude from ones that will be derived later in the nondipole case. The pondermotive energy \(U_p\) is given by \(U_p = \frac{\mathcal{A}^2_j}{4}\) for \(j = 0:2\).  To approximate the expansion coefficients effectively, the argument of each Bessel function imposes a natural cut-off for the corresponding index \( n_i \). Beyond this limit, the Bessel function exhibits an exponential decline, following the relation \( J_{n_i}(x) \sim e^{-n_i} \) for values where \( |n_i| > |x| = n_{i,\max} \). Consequently, the fifteen originally infinite summations can be truncated within the range \( -n_{i,\max} \leq n_i \leq n_{i,\max} \), providing a reliable approximation. The resulting expression reveals how different photon number channels contribute to the overall transition amplitude. Specifically, the $p_x$-coupled terms produce Bessel functions whose arguments depend on the electron momentum component along the polarization axis, while the $p_y$ terms incorporate ellipticity effects through modified arguments.
+
+\subsection{Implementation for Plane Wave in Nondipole Approximation}
+By following the same approach, we obtain the complete solution for the transition amplitude in the nondipole case, expressed as
+\begin{eqnarray}
+	T^{ND}_0(\mathbf{p}) = \prod_{i=1}^{15} \left\{(-\dot\iota)^{n_i \Theta(i-12)} \right. 
+	&& \left. \sum_{n_i-\infty}^{\infty}  J_{n_i} (x_i^{ND})  \left( \frac{\langle \mathbf{p}_{n_i} | V(\mathbf{r}) | \Psi_0 \rangle}{\epsilon_p + U_p + \Omega_{n_i}^{ND} +I_p} + \langle \mathbf{p}_{n_i} | \Psi_0 \rangle \right) \right. \nonumber \\
+	&& \left. \times \left( 1 - e^{\dot\iota \left[\left(\epsilon_p + U_p + \Omega_{n_i}^{ND} +I_p\right) \tau_p + \Phi_{n_i}^{ND}\right]} \right) \right\}.
+	\label{Eq:TransitionAmplitudeNondipole}
+\end{eqnarray}
+as before we have \( \Theta(x) \) as the Heaviside step function which ensures that the extra factor \( i^{n_i} \) appears only for the last three terms (\( i \geq 13 \)), while it remains absent for the first 12 terms (\( i \leq 12 \)). Similarly, we redefined the frequencies and phases in terms of \(\Omega\) and \(\Phi\) respectively and including \(x_i\) and \(\mathbf{p}_i\) are defined in the Appendix \ref{appendix-B}. Similarly, the pondermotive energy \(U_p\) is given by \(U_p = \sum_j\frac{\mathcal{A}^2_j}{4\eta_j}\) for \(j = 0:2\).
+
+The situation becomes considerably more complex when dealing with twisted light fields described by Equation~\ref{Eq:VolkovPhaseSolutionTwisted}. Here, the phase structure contains not only multiple frequency components but also spatial phase modulations carrying orbital angular momentum. Each cosine and sine term in the twisted phase requires individual expansion, with the azimuthal phase dependence introducing additional angular momentum conservation constraints.
+
+
+
+\section{Saddle Point Approximation}
+\label{sec:saddle_point_approx}
+The saddle point approximation (SPA) serves as a cornerstone technique for evaluating oscillatory integrals that emerge in the path integral formulation of strong-field ionization \cite{Nayak2019}. Within the framework of the SFA, the transition amplitude between bound and continuum states involves highly oscillatory integrals whose exact evaluation proves computationally prohibitive. The SPA provides an asymptotically exact method for approximating these integrals by identifying dominant contributions from critical points in the complex-time plane \cite{Jašarević2020}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{gfx/Final/Mathtool/trajectories.pdf}
+	\caption{The standard contour in complex time describes the electron dynamics, starting from the complex ionization instant~$t_s$, evolving toward its real component~$t_r = \Re(t_s)$, and subsequently propagating along the real-time axis until detection at $t_f \to +\infty$.}
+	\label{fig:trajectories}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{gfx/Final/Mathtool/contour.pdf}
+	\caption{ \label{fig:Landscape}
+    3D Landscape of the time-dependent action $S(t')$ and it projection computed numerically for the strong-field ionization. Height map shows $\Im[S(t')]$ controlling the amplitude $|e^{-iS(t')}| = e^{\Im [S(t')]}$ of the quantum mechanical phase factor. Black curves depict steepest descent contours where $\Re[S(t')] = \mathrm{const.}$, orthogonal to the $\Im[S(t')]$ gradient. Black markers indicate saddle points $t_s$ satisfying $S'(t_s)=0$, which dominate the temporal integration path. The plotted solution corresponds to field parameters: $\epsilon = 1.0$, $\lambda = 800$ nm, $I = 5 \times 10^{14}$ W/cm$^{2}$, $n_p = 2$ cycles, $I_p = 15.6$ eV.
+}
+\end{figure}
+Mathematically, the method relies on the analytic continuation of the time variable into the complex plane, where the integration contour can be deformed to pass through saddle points along paths of steepest descent \cite{Weber2025,Kjeldsen2006,Vanne2007}. The complex-time landscape shown in Fig.~\ref{fig:Landscape} provides crucial insights into strong-field ionization dynamics. The saddle point approximation's physical intuition becomes evident through this visualization: dominant contributions emerge from specific critical points, while the steepest descent paths guide contour deformation. This approach not only clarifies the quantum dynamics but also enables efficient computational implementation by isolating physically relevant spacetime regions. This approach captures both the quantum tunneling dynamics (through imaginary time components) and classical trajectory propagation (through real time components), as shown in Fig. \ref{fig:trajectories}. The approximation becomes exact in the semiclassical limit ($\hbar \to 0$), making it particularly suitable for strong-field physics where the action is typically large compared to $\hbar$.
+\subsection{Introduction to the Stationary Phase Method}
+The stationary phase method provides the mathematical foundation for evaluating integrals of the form \cite{Bleistein1975}
+\begin{equation}
+\mathcal{I} = \int_{-\infty}^{\infty} f(t) \; e^{i\phi(t)/\zeta} \; dt,
+\end{equation}
+where $f(t)$ denotes a slowly varying amplitude function, $\phi(t)$ represents the rapidly oscillating phase, and $\zeta$ serves as a small asymptotic parameter. In the context of strong-field ionization, $\zeta$ corresponds to the reduced Planck constant $\hbar$, while $\phi(t)$ embodies the classical action $S(\mathbf{p},t)$. As shown in Fig.~\ref{fig:phase}, the rapid oscillations of $\Re[e^{i S(\mathbf{p},t)}]$ (shown for $\epsilon_p = 5\omega$) justify the need for such asymptotic methods. The stationary points of $\phi(t)$ determine the dominant contributions to $\mathcal{I}$, analogous to how saddle points in the complex-time plane govern the ionization dynamics.
+\begin{figure}
+	\centering
+	\includegraphics[width=1.\textwidth]{gfx/Final/Mathtool/phase.pdf}
+	\caption{
+    Real part of the Volkov phase, $\Re[e^{i S(\mathbf{p},t)}]$, as a function of real time, exhibiting rapid oscillations. 
+    The calculation assumes a photoelectron energy $\epsilon_p = 5\omega$ in a circularly polarized, 8-cycle laser pulse with a peak intensity of $5 \times 10^{14}~\text{W/cm}^2$ and a wavelength of 800~nm.
+}
+	\label{fig:phase}
+\end{figure}
+The critical insight derives from the Riemann-Lebesgue lemma \cite{Serov2017}, which establishes that contributions away from stationary points vanish in the limit $\zeta \to 0$ due to destructive interference. The stationary phase points $t_s$ satisfy
+\begin{equation}
+\frac{d\phi}{dt}\bigg|_{t=t_s} = 0.
+\end{equation}
+For analytic functions, we can expand the phase about each stationary point to second order
+\begin{equation}
+\phi(t) \approx \phi(t_s) + \frac{1}{2}\phi''(t_s)(t-t_s)^2 + \mathcal{O}((t-t_s)^3).
+\end{equation}
+Substituting this expansion into the integral yields
+\begin{equation}
+\mathcal{I} \approx f(t_s) e^{i\phi(t_s)/\epsilon} \int_{-\infty}^{\infty} \exp\left(\frac{i\phi''(t_s)}{2\zeta}(t-t_s)^2\right) dt.
+\end{equation}
+The Gaussian integral evaluates exactly to
+\begin{equation}
+\mathcal{I} \approx f(t_s) \sqrt{\frac{2\pi i\zeta}{\phi''(t_s)}} e^{i\phi(t_s)/\zeta}.
+\end{equation}
+When multiple isolated saddle points contribute, the total integral becomes a coherent sum
+\begin{equation}
+\mathcal{I} \approx \sum_{n} f(t_s^{(n)}) \sqrt{\frac{2\pi i\zeta}{\phi''(t_s^{(n)})}} e^{i\phi(t_s^{(n)})/\zeta}.
+\end{equation}
+The interference between these terms generates characteristic patterns in the resulting momentum distributions observable in photoelectron spectra.
+
+\subsection{Complex-Time Solutions and their Physical Meaning}
+
+In the theory of strong-field ionization, the electron dynamics are governed by semiclassical saddle-point equations derived from the quantum mechanical amplitude \cite{Lewenstein1994,Agacevic2024}. The dominant contribution to the ionization amplitude arises from solutions to the saddle-point equation
+\begin{equation}
+\frac{[\mathbf{p} + \mathbf{A}(t_s)]^2}{2} + I_p = 0,
+\end{equation}
+where $\mathbf{p}$ represents the asymptotic drift momentum. Under the strong-field approximation, which neglects the Coulomb potential after tunneling, this equation admits exclusively complex-valued solutions of the form $t_s = t_r + it_i$. The real part $t_r$ corresponds to the ionization phase within the laser cycle when the electron emerges from the barrier, typically occurring near the field maximum ($\omega t_r \approx \pi/2$ for a cosine pulse). The imaginary part $t_i$ quantifies the tunneling duration through the relation
+\begin{equation}
+\tau_{\text{tun}} \approx \frac{\sqrt{2I_p}}{E_0|\sin(\omega t_r)|},
+\label{eq:tunneling_time}
+\end{equation}
+where $E_0$ represents the peak electric field strength. This expression follows the under-the-barrier flight time \cite{Torlina2015, Keldysh1964}, considering the barrier width $d \sim I_p/E(t_r)$ and the characteristic velocity $v \sim \sqrt{2I_p}$ derived from energy conservation, with the instantaneous field given by $E(t_r) = E_0\sin(\omega t_r)$. It should be emphasized that the saddle-point time $t_s$ is a complex quantity. Its real part, $t_r = \mathrm{Re}(t_s)$, denotes the physical ionization (emission) time at which the electron exits the tunneling barrier and enters the continuum, while its imaginary part, $t_i = \mathrm{Im}(t_s)$, does not correspond to an observable time but rather characterizes the under-the-barrier motion and governs the exponential suppression of the ionization probability. The time variable appearing in Eq.~\ref{eq:tunneling_time} therefore refers to the real emission time $\mathrm{Re}(t_s)$, which is used for the subsequent classical propagation of the electron in the continuum.
+
+
+The complex exit momentum $\mathbf{v}(t_s) = \mathbf{p} + \mathbf{A}(t_s)$ determines the initial conditions for subsequent continuum propagation. The real part $\mathrm{Re}[\mathbf{v}(t_s)]$ yields the observable drift momentum corresponding to classical trajectories, while the imaginary component $\mathrm{Im}[\mathbf{v}(t_s)]$ reflects the quantum momentum uncertainty inherent to the tunneling process \cite{Ivanov2011}.
+
+The solution formalism implies that the electron follows a complex spacetime trajectory, spending an imaginary time interval $t_i$ under the barrier before emerging at real time $t_r$ \cite{Popruzhenko2014}. This interpretation provides a natural explanation for several quantum phenomena: the finite probability of ionization below the classical barrier height , the phase-dependent nature of ionization rates encoded in $t_r$, and the initial momentum spread manifested through non-zero values of $\mathrm{Im}[\mathbf{v}(t_s)]$.
+This complex-time formalism maintains consistency with three key experimental and theoretical frameworks: the attoclock measurements of tunneling time \cite{Eckle2008}, the imaginary-time method employed in instanton physics \cite{Coleman1985}, and the quantum-classical correspondence principle in the high-field limit. The approach bridges the gap between fully quantum mechanical treatments and intuitive semiclassical pictures of strong-field processes.
+
+\subsection{Validity and Limitations of the Saddle Point Approximation}
+
+The saddle point approximation maintains validity under specific physical conditions. The primary requirement is the existence of a small parameter $\zeta$ such that the phase varies rapidly compared to the amplitude. In atomic units, this translates to the condition $S/\hbar \gg 1$ which typically holds for strong laser fields and high ionization potentials. The approximation remains accurate when the laser field dominates the atomic potential during the tunneling process, expressed mathematically as $\kappa E_0 \gg \frac{Z}{r_{\text{tun}}^2}$ where $\kappa = \sqrt{2I_p}$ and $r_{\text{tun}} = I_p/E_0$ represents the tunneling exit point.
+Several physical regimes challenge the validity of the standard saddle point approximation. In the multiphoton ionization regime characterized by the Keldysh parameter $\gamma \gg 1$, the discrete photon absorption channels render the semiclassical treatment inadequate. The Coulomb potential introduces significant corrections when $\frac{Z}{r_{\text{tun}}} \gtrsim U_p$ where $U_p$ denotes the ponderomotive energy. In such cases, the long-range Coulomb interaction modifies both the saddle point positions and the resulting momentum distributions \cite{Popruzhenko2008,Rook2024}.
+
+When multiple saddle points approach each other in the complex plane, the simple Gaussian approximation fails and requires extension through uniform asymptotic expansions \cite{Milosevic2025,Weber2025}. The critical case occurs when two saddle points coalesce, leading to a divergence in the prefactor $\sqrt{2\pi i\zeta/\phi''(t_s)}$. This situation necessitates Airy function expansions to properly describe the transition region.
+
+Despite these limitations, the saddle point approximation remains the most powerful analytical tool for understanding strong-field ionization dynamics. Its ability to provide both quantitative predictions and qualitative physical insight makes it indispensable for interpreting attosecond-scale electron dynamics in intense laser fields.
+
+
+\section{Numerical Implementation}
+\label{sec:numerical_implementation}
+
+The numerical solution of saddle point equations in strong-field ionization requires careful consideration of complex analysis, nonlinear root-finding, and convergence criteria. This section presents a comprehensive implementation framework using Julia's numerical computing capabilities \cite{Bezanson2018,mogensen2018optim,patrick_kofod_mogensen_2020_4404703}.
+
+\subsection{Root-Finding Algorithms for Saddle Points}
+\label{subsec:root_finding}
+
+The saddle point equation for strong-field ionization takes the form:
+\begin{equation}
+f(t_s; \mathbf{p}) = \frac{1}{2}[\mathbf{p} + \mathbf{A}(t_s)]^2 + I_p = 0
+\end{equation}
+where $t_s \in \mathbb{C}$ and $\mathbf{p} \in \mathbb{R}^3$. For a monochromatic field with frequency $\omega$ and amplitude $E_0$, the initial guesses are distributed across laser cycles
+\begin{equation}
+t_s^{(0)} = \frac{2\pi n}{\omega} + i\frac{I_p}{E\left|i\sqrt{2I_p}\right|}, \quad n \in \mathbb{Z}
+\end{equation}
+The algorithm for generates these initial estimates is shown below
+\begin{algorithm}[H]
+\caption{Generation of Initial Guesses for Saddle Point Solutions}
+\label{alg:saddle_guesses}
+\begin{algorithmic}[1]
+\Require Ionization potential $I_p$, electric field $\mathbf{E}(t)$, frequency $\omega$, number of cycles $n_{\text{cycle}}$
+\Ensure Array of complex initial guesses $t_s^{(0)}$
+
+\State Initialize empty array $\text{guesses} \gets \emptyset$
+\State Calculate cycle duration $T \gets 2\pi/\omega$
+
+\Comment{Find electric field maxima}
+\State Sample times $t_{\text{samples}} \gets \text{linspace}(0, n_{\text{cycle}}T, 1000)$
+\State Evaluate field $E_{\text{samples}} \gets \mathbf{E}(t_{\text{samples}})$
+\State Find peaks $\text{peak\_indices} \gets \text{find\_local\_maxima}(|E_{\text{samples}}|)$
+\State Extract peak times $t_{\text{peaks}} \gets t_{\text{samples}}[\text{peak\_indices}]$
+
+\Comment{Generate guesses per half-cycle}
+\For{$n \gets 0$ to $n_{\text{cycle}}-1$}
+    \For{$k \gets 1$ to $\text{num\_per\_half\_cycle}$}
+        \State $t_{\text{re}} \gets nT + \frac{(k-1)T}{2\times\text{num\_per\_half\_cycle}}$
+        \State $t_{\text{im}} \gets \sqrt{2I_p}/\max(|\mathbf{E}(t_{\text{re}})|, 0.1)$
+        \State $t_0 \gets t_{\text{re}} + it_{\text{im}}$
+        \State $\text{guesses.append}(t_0)$
+    \EndFor
+\EndFor
+
+\Comment{Add extra guesses near peaks}
+\For{$t_p$ in $t_{\text{peaks}}$}
+    \For{$\alpha$ in $[0.5, 1.0, 1.5]$}
+        \State $t_{\text{im}} \gets \alpha\sqrt{2I_p}/\max(|\mathbf{E}(t_p)|, 0.1)$
+        \State $\text{guesses.append}(t_p + it_{\text{im}})$
+    \EndFor
+\EndFor
+
+\State \Return $\text{guesses}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Newton-Raphson and Iterative Methods}
+\label{subsec:newton_raphson}
+
+The Newton-Raphson method \cite{Ypma1995} in the complex plane requires careful handling of the Jacobian \cite{Hubbard2001}
+\begin{equation}
+t_s^{(k+1)} = t_s^{(k)} - J^{-1}(t_s^{(k)})f(t_s^{(k)})
+\end{equation}
+where the Jacobian $J(t_s) = \partial f/\partial t_s = (\mathbf{p} + \mathbf{A}(t_s)) \cdot \mathbf{E}(t_s)$. The implementation uses automatic differentiation for numerical stability as shown below
+\begin{algorithm}[H]
+\caption{Complex Newton-Raphson Solver}
+\label{alg:newton_raphson}
+\begin{algorithmic}[1]
+\Require Function $f$, initial guess $z_0$, tolerance $\text{tol}=1\times10^{-10}$, maximum iterations $\text{max\_iter}=100$, step size $h=1\times10^{-8}$, minimum derivative $\text{min\_derivative}=1\times10^{-12}$
+\Ensure Approximate root $z$ satisfying $\left| f(z) \right| < \text{tol}$
+
+\State $z \gets \text{complex}(z_0)$
+\State Initialize empty history list $\text{history} \gets []$
+
+\For{$i \gets 1$ to $\text{max\_iter}$}
+    \State $f_z \gets f(z)$
+    \State Append $(z, |f_z|)$ to $\text{history}$
+    
+    \If{$|f_z| < \text{tol}$}
+        \State \textbf{return} $z$
+    \EndIf
+
+    \Comment{Finite difference derivative with fallback}
+    \State Try:
+    \State \hspace{1em} $f'_z \gets \frac{f(z + h) - f(z - h)}{2h}$
+    \State Catch:
+    \State \hspace{1em} $f'_z \gets \frac{f(z + h) - f(z)}{h}$
+
+    \If{$|f'_z| < \text{min\_derivative}$}
+        \State Try:
+        \State \hspace{1em} $f'_z \gets \frac{\text{imag}(f(z + ih))}{h}$
+        \If{$|f'_z| < \text{min\_derivative}$}
+            \State $z \gets z + 0.1 \times (\text{randn}() + i \times \text{randn}())$
+            \State \textbf{continue}
+        \EndIf
+    \EndIf
+
+    \State $\Delta z \gets \frac{f_z}{f'_z}$
+    \State $z_{\text{new}} \gets z - \Delta z$
+    
+    \If{$|\Delta z| > 10^6$}
+        \State \textbf{warn} "Large step detected, scaling down"
+        \State $\Delta z \gets \frac{\Delta z}{|\Delta z| \times 10^3}$
+        \State $z_{\text{new}} \gets z - \Delta z$
+    \EndIf
+
+    \If{$|\Delta z| < \text{tol}$}
+        \State \textbf{return} $z_{\text{new}}$
+    \EndIf
+
+    \State $z \gets z_{\text{new}}$
+\EndFor
+
+\State \textbf{warn} "Maximum iterations reached without convergence"
+\State \textbf{return} $z$
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Stability and Convergence of Complex-Time Roots}
+\label{subsec:stability}
+
+The numerical solution of saddle point equations in complex time presents unique convergence challenges governed by the local analytic properties of the Volkov phase functional. The convergence behavior is characterized by the Lipschitz continuity condition of the Jacobian \cite{Ortega2000}
+\begin{equation}
+\|J(t_s) - J(t_s')\| \leq L\|t_s - t_s'\|^\alpha
+\label{eq:lipschitz}
+\end{equation}
+where $L$ is the Lipschitz constant and $\alpha \in (0,1]$ quantifies the Hölder continuity of the Jacobian matrix $J(t_s) = \partial f/\partial t_s$. For the saddle point equation $f(t_s; \mathbf{p})$, the Jacobian exhibits quasi-periodic behavior with $L \sim E_0\sqrt{I_p}$ and $\alpha = 1$ in the tunneling regime ($\gamma < 1$), transitioning to $\alpha \approx 0.5$ in the multiphoton regime ($\gamma > 3$).
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{gfx/Final/Mathtool/rapson.pdf}
+    \caption{
+    Convergence paths of Newton-Raphson iterations in the complex time plane for saddle point solutions. Markers show the progression of iterations (small dots) with final converged saddle points indicated by black circles. The paths represent solutions to the saddle point equation $f(t_s; \mathbf{p}) = 0$ where $\Re(t) \in (0,T_p)$ and $\Im(t) > 0$. Numbers indicate the iteration count for each convergence path. The other parameters are same as in Fig. \ref{fig:Landscape}.
+    }
+    \label{fig:convergence}
+\end{figure}
+The implementation employs dual-number automatic differentiation to maintain numerical stability
+\begin{equation}
+J(t_s) = \text{Im}\left(\frac{f(t_s + \epsilon(1+i))}{\epsilon}\right), \quad \epsilon = 10^{-20}
+\label{eq:jacobian}
+\end{equation}
+This approach provides machine-precision accuracy (relative error $<10^{-14}$) while avoiding cancellation errors inherent in finite-difference methods. The residual decay follows the theoretical quadratic convergence pattern until reaching machine precision, as shown in the inset of Fig.~\ref{fig:convergence}.
+
+
+\section{Computation of Momentum Distributions}
+The ionization dynamics can be quantitatively described through the transition amplitude from the bound state to the continuum. With the integral now approximated in terms of dominant saddle-point contributions, we obtain the semiclassical expression for the transition amplitude \cite{Bauer2005}
+\begin{equation}
+    T^{\text{SP}}_0(\mathbf{p}) = \sum_{t_s} V^x(\mathbf{p},t_s) 
+    \sqrt{\frac{2 \pi i}{\mathbf{E}(t_s) \cdot [\mathbf{p} + \mathbf{A}(t_s)]}} 
+    e^{i [S(\mathbf{p}, t_s) + I_p t_s]},
+    \label{Eq:TransitionAmplitudeSaddle}
+\end{equation}
+and the factor \begin{equation}
+    V^x(\mathbf{p},t_s) = 
+    \begin{cases}
+        \langle \mathbf{p} | V^x_{le} | \Psi_0 \rangle & (x = \mathrm{V}), \\[6pt]
+        \langle \mathbf{p} + \mathbf{A}(t_s) | V^x_{le} | \Psi_0 \rangle & (x = \mathrm{L}),
+    \end{cases}
+    \label{Eq:FormFactor}
+\end{equation}
+depends on the choice of gauge. The sum runs over all relevant saddle-point solutions $t_s$ which are part of the integration contour. This expression reveals several key physical insights. The prefactor $ V^x(\mathbf{p},t_s)$ represents the projection of the bound state $|\Psi_0\rangle$ onto the continuum state $|\mathbf{p}\rangle$ through the interaction potential $V^x_{le}$. The denominator $\mathbf{E}(t_s) \cdot (\mathbf{p} + \mathbf{A}(t_s))$ encodes the laser field strength at the ionization instant $t_s$. The exponential term $e^{i (S(\mathbf{p}, t_s) + I_p t_s)}$ captures the quantum phase accumulated during the ionization process, where $S(\mathbf{p}, t_s)$ is the classical action and $I_p$ is the ionization potential. Each term in the saddle-point sum corresponds to a distinct quantum trajectory contributing to the ionization process, with the prefactor weighting the relative importance of each pathway.
+
+Building on our derivation of the nondipole Volkov state in Section~\ref{sec:volkov_derivation}, which incorporates both electric and magnetic field components of the laser interaction, we now implement the saddle-point method for the complete nondipole case. The treatment requires careful separation of the purely temporal and spatiotemporal components of the Volkov phase.
+
+To achieve this separation systematically, we employ a Taylor expansion of the relevant trigonometric functions around $\mathbf{k} \cdot \mathbf{r} = 0$. Consider the general sinusoidal function
+\begin{equation}
+    \sin(\mathbf{k} \cdot \mathbf{r} - \omega t + \phi) = \sin(f(\mathbf{r},t)),
+\end{equation}
+where $f(\mathbf{r},t) \equiv \mathbf{k} \cdot \mathbf{r} - \omega t + \phi$. The Taylor expansion about $\mathbf{k} \cdot \mathbf{r} = 0$ yields
+\begin{equation}
+    \sin(f) \approx \sin(-\omega t + \phi) + \cos(-\omega t + \phi)(\mathbf{k} \cdot \mathbf{r}) 
+    - \frac{\sin(-\omega t + \phi)}{2} (\mathbf{k} \cdot \mathbf{r})^2 + \mathcal{O}((\mathbf{k} \cdot \mathbf{r})^3).
+    \label{eq:taylor_expansion}
+\end{equation}
+This expansion maintains excellent convergence for typical experimental parameters where $|\mathbf{k} \cdot \mathbf{r}| \ll 1$. The separation can be performed either before or after momentum integration without significant loss of accuracy, as demonstrated in \cite{Minneker2022}.
+
+The key insight from this expansion is that the nondipole Volkov phase can be decomposed into separable temporal and spatial components
+\begin{equation}
+    \Gamma(\mathbf{r}, t) = \Gamma_1(t) + \mathbf{r} \cdot \symbf{\Gamma}_2(t),
+    \label{eq:volkov_phase_separation}
+\end{equation}
+where the temporal component $\Gamma_1(t)$ contains all purely time-dependent terms, and the spatial component $\symbf{\Gamma}_2(t) = -\partial_t \Gamma_1(t) \frac{\mathbf{k}}{\omega_{\mathbf{k}}}$ couples the spatial and temporal dynamics. This separation leads to a compact expression for the nondipole Volkov state:
+\begin{equation}
+    \chi_{\mathbf{p}} (\mathbf{r},t) = \frac{1}{(2\pi)^{3/2}} 
+    \exp\left[i \left(\mathbf{p} - \symbf{\Gamma}_2(t)\right) \cdot \mathbf{r}\right]
+    \exp\left[-i (\epsilon_{p} t + \Gamma_1(t))\right],
+    \label{eq:nondipole_volkov_state2}
+\end{equation}
+where $\epsilon_p = p^2/2$ is the kinetic energy of the freed electron. Here we only consider the solution in the velocity gauge.
+Using the vector potential defined in Eq.~\ref{Eq:nondipoleVactorPotential}, we can explicitly evaluate the temporal phase component $\Gamma_1(t)$. The complete expression contains several physically distinct contributions:
+\begin{eqnarray}
+	\Gamma_1(t) &=& \sum_{j=0}^{2} \frac{\mathcal{A}_j^2}{4} \frac{-\omega_j t}{\eta_j(\mathbf{k})} + \frac{1-\epsilon^2}{1+\epsilon^2} \sum_{j=0}^{2} \frac{\mathcal{A}_j^2}{8\eta_j(\mathbf{k})} \sin(-2\omega_j t + 2\phi_{\mathrm{cep}}) \nonumber\\
+	&+& \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i\mathcal{A}_j}{2(\eta_i(\mathbf{k}) -\eta_j(\mathbf{k}))} \sin(-(\omega_i - \omega_j)t) \nonumber \\
+	&+& \frac{1-\epsilon^2}{1+\epsilon^2} \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i\mathcal{A}_j}{2(\eta_i(\mathbf{k}) +\eta_j(\mathbf{k}))} \sin(-(\omega_i + \omega_j) t + 2\phi_{\mathrm{cep}}) \nonumber\\
+	&+& \sqrt{\frac{p_x^2 + \epsilon^2 p_y^2}{1 + \epsilon^2}} \sum_{j=0}^{2} \frac{\mathcal{A}_j}{\eta_j(\mathbf{k})} \sin(-\omega_j t + \phi_{\mathrm{cep}} - \varphi_p^{(\epsilon)}),
+	\label{eq:gamma1_temporal_phase}
+\end{eqnarray}
+where $\varphi_p^{(\epsilon)} = \arctan\left(\frac{\epsilon p_y}{p_x}\right)$ represents the ellipticity-dependent momentum angle, and $\eta_j(\mathbf{k}) = 1 - \mathbf{k} \cdot \mathbf{p}/\omega_j$ accounts for the nondipole correction to the effective frequency.
+The complete nondipole transition amplitude, incorporating magnetic field effects, takes the form
+\begin{equation}
+    T^{\text{NDSP}}_0(\mathbf{p}) = \sum_{t_s} \langle \mathbf{p} - \symbf{\Gamma}_2(t_s) | V(\mathbf{r}) | \Psi_0 \rangle 
+    \sqrt{\frac{2 \pi i}{\partial^2_{t_s}\Gamma_1(t_s)}} 
+    e^{i (\epsilon_{p} t_s + \Gamma_1(t_s) + I_p t_s)},
+    \label{Eq:TransitionAmplitudeSaddle2}
+\end{equation}
+where the superscript NDSP emphasizes the inclusion of nondipole effects. Several important modifications appear compared to the dipole case:
+
+\begin{itemize}
+    \item The momentum shift $\symbf{\Gamma}_2(t_s)$ in the matrix element accounts for the laser magnetic field's influence on the electron's asymptotic momentum
+    \item The second derivative $\partial^2_{t_s}\Gamma_1(t_s)$ replaces the simpler dipole denominator, reflecting the more complex temporal structure in the nondipole regime
+    \item The phase factor now includes the nondipole temporal phase $\Gamma_1(t_s)$
+\end{itemize}
+
+This expression provides the foundation for computing photoelectron momentum distributions while fully accounting for the laser's magnetic field component.
+
+The numerical implementation employs a uniform momentum grid with step size $\Delta p = 0.01$ a.u. in all three dimensions, spanning the range $p_i \in [-p_{\text{max}}, p_{\text{max}}]$ where $p_{\text{max}} = \sqrt{2(2U_p + I_p)}$. This choice provides sufficient resolution to capture interference structures while maintaining computational tractability. The grid boundaries are determined by the laser intensity through $U_p$, ensuring all relevant photoelectron momenta are included.
+
+Saddle-point solutions $t_s$ are obtained by solving the nonlinear equation $\partial_t S(\mathbf{p},t) = 0$ using the complex-plane Newton-Raphson iteration algorithms, with initial guesses informed by the peaks of the electric field. Only solutions satisfying $\text{Im}(t_s) > 0$ and $\text{Re}(t_s) \in [0, T_{p}]$ are retained. The phase-space weighting factor for each solution includes both the Hessian determinant and tunneling exponent
+\[
+w_s = \left|\frac{2\pi i}{\partial^2_t S(\mathbf{p},t_s)}\right|^{1/2} \exp\left(i[S(\mathbf{p},t_s)]\right)
+\]
+Parallel computation is implemented using Julia's multiprocessing capabilities, distributing momentum points across available CPU cores. The task distribution follows a static scheduling approach where each process handles a distinct subset of the momentum grid, with load balancing optimized for the typical distribution of saddle-point search times. Interprocess communication is minimized by having each worker compute and store its partial results independently, with only final probability amplitudes being collected.
+
+In this chapter, we employed advanced mathematical techniques to simplify the calculation of the final transition amplitude. Specifically, we utilized the Jacobi-Anger expansion and the saddle-point method , providing detailed algorithms for identifying saddle points in the integration. In the next chapter, we will implement the full methodology developed thus far and present numerical results obtained within this framework. A key focus will be the comparative analysis of the saddle-point approximation  and the Jacobi-Anger  approach, highlighting their respective advantages and limitations. Additionally, we will systematically contrast the dipole and non-dipole regimes to elucidate their distinct physical implications.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

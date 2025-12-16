@@ -1,0 +1,55 @@
+\chapter{Conclusion and Outlook}
+\section{Summary of Key Findings}
+
+This doctoral dissertation has presented a comprehensive theoretical investigation of strong-field ionization, with particular emphasis on above-threshold ionization phenomena and their momentum-resolved characteristics. Our work has systematically explored both fundamental aspects and advanced applications of SFI through a combination of analytical derivations and numerical simulations.
+
+The theoretical framework developed in Chapter 2 and 3 established a rigorous foundation for understanding light-matter interactions in intense fields. We examined various electromagnetic field configurations ranging from conventional plane waves to ultrashort few-cycle pulses and twisted light beams carrying orbital angular momentum. The detailed analysis included both temporal and spectral characteristics of these pulses, along with a complete derivation of the strong field approximation from first principles. Special attention was given to gauge considerations, validity conditions, and the increasingly important nondipole effects that emerge in high-intensity, short-pulse regimes.
+
+Chapter 4 presented the computational methodology that enabled our numerical investigations. The sophisticated implementation of saddle point approximation techniques, including their connection to stationary phase methods and the physical interpretation of complex-time solutions, formed the core of our approach. We developed robust numerical algorithms for root-finding in complex domains and momentum space discretization, complemented by strategies for computational efficiency in large-scale parameter space exploration.
+
+The results presented in Chapter 5 revealed several significant insights into strong-field ionization dynamics. For few-cycle pulses, we demonstrated how pulse duration, carrier-envelope phase, and polarization state collectively influence ionization yields and electron emission patterns. Our analysis of quantum interference phenomena clarified how ATI peak structures arise from multipath interference governed by Volkov phases, with spectral features encoding valuable temporal information. The investigation of nondipole regimes showed substantial magnetic field contributions at high intensities, with characteristic wavelength-dependent effects. Perhaps most innovatively, our work with twisted light beams revealed how OAM modifies angular momentum distributions and how phase singularities create distinct saddle point configurations.
+
+\section{Future Directions}
+\label{sec:future}
+
+The findings presented in this thesis open several promising avenues for further investigation. One natural extension would be to explore more complex laser field configurations beyond the current setup. The observed modifications to the potential barrier and vector potential dynamics, as illustrated in Fig.~\ref{Fig_Intro}, suggest that introducing additional field components could yield richer control over electron dynamics. Specifically, incorporating a second field component with different polarization or frequency could enable finer manipulation of the ionization process and photoelectron emission patterns.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{gfx/Final/Future/intro.png}
+	\caption{\label{Fig_Intro}Schematic of a two-color laser field (strong CP + weak LP) showing: (a) Potential barrier modification by LP field (red) vs CP alone (blue); (b) Asymmetric potential from perpendicular LP component; (c) Polarization plane with rotating CP (blue arrows) and oscillating LP (red arrows); (d) Vector potentials $\mathbf{A}_C$ (blue), $\mathbf{A}_L$ (red), and the black lines show different ionization times $t'$, $t''$ corresponding to total vector potential.
+}
+\end{figure}
+The phase-dependent effects demonstrated in Figs.~\ref{Fig_Elliptical-0.75} and \ref{ElectronTraj} highlight the importance of temporal control in strong-field processes. Future studies could investigate these phenomena using few-cycle laser pulses, where the carrier-envelope phase becomes a critical parameter. This approach would allow for attosecond-scale control of the ionization process, potentially leading to new methods for steering electron trajectories with unprecedented precision.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{gfx/Final/Future/EllipticalDataPlot.png}
+	\caption{\label{Fig_Elliptical}Photoelectron momentum distributions in the polarization plane ($p_x$, $p_y$) for a two-color field comprising a strong circularly polarized component and a weak linearly polarized component, shown for different ellipticities $\epsilon_0 = 0.25$, $0.5$, $0.75$, and $1.0$. The color scale represents the normalized ionization probability, with red indicating the highest yield. As $\epsilon_0$ increases from top-left to bottom-right, the field evolves from elliptical to circular polarization. The panels demonstrate how the angular distribution and interference structures become more symmetric and circular for higher ellipticity. Arrows denote the polarization directions of the field components, while dotted circles in the top-left panel guide the eye to interference ring structures. The rotation direction of the circular component is indicated by the curved arrow.
+}
+\end{figure}
+
+Further examination of ellipticity-dependent effects, as shown in Fig.~\ref{Fig_Elliptical}, could provide deeper insights into the transition between linear and circular polarization regimes. Systematic studies varying the ellipticity across its full range while maintaining other parameters constant might reveal previously unidentified interference phenomena or symmetry-breaking effects. Such investigations could prove particularly valuable for understanding the fundamental limits of polarization control in strong-field ionization.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{gfx/Final/Future/Elliptical0-75DataPlot.png}
+	\caption{\label{Fig_Elliptical-0.75}Photoelectron momentum distributions in the polarization plane ($p_x$, $p_y$) for a two-color laser field composed of a strong circularly polarized field and a weak linearly polarized field, with fixed ellipticity $\epsilon_0 = 0.75$. The panels correspond to different relative phases $\phi = 0$, $\phi = \pi/2$, and $\phi = \pi$ between the two field components. The color scale indicates the normalized ionization probability. Changing the phase modifies the interference pattern and symmetry in the momentum distribution, revealing how phase control can steer ionization pathways and influence electron emission directionality.
+}
+\end{figure}
+The trajectory analysis presented in Fig.~\ref{ElectronTraj} suggests opportunities for developing more sophisticated theoretical models. Future work could focus on classifying trajectory contributions to specific features in the momentum spectrum, potentially leading to a more comprehensive understanding of the relationship between laser parameters and recollision dynamics. This could involve developing new analytical tools or numerical methods to disentangle the complex interplay of various ionization pathways.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{gfx/Final/Future/ElectronTraj.png}
+	\caption{\label{ElectronTraj}Time evolution of the vector potential components and corresponding electron trajectories for a two-color laser field composed of an elliptical (red, strong) and a linear (blue, weak) field, for three different relative phases: $\phi = 0$, $\phi = \pi/2$, and $\phi = \pi$. The panels display the field components (solid and dashed lines) and the calculated electron trajectories (dashed lines in green, orange, cyan and red) launched at specific ionization times (vertical dashed lines) corresponding to laser phases $\omega t = 60^\circ$, $120^\circ$, and $180^\circ$. The phase-dependent modulation of the total vector field affects the direction and curvature of the trajectories, highlighting the role of relative phase in steering photoelectrons in strong-field ionization.
+}
+\end{figure}
+Applications of these findings to material-specific systems represent another promising direction. The asymmetric potential barriers shown in Fig.~\ref{Fig_Intro} indicate that similar approaches could be adapted for studying orientation-dependent ionization in aligned molecular systems or crystalline materials. Such investigations could bridge the gap between fundamental strong-field physics and practical applications in ultrafast spectroscopy or materials characterization.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{gfx/Final/Future/Angular_Shift.png}
+	\caption{\label{Fig_Angularshift}Phase-dependent angular shift of ATI peaks in the photoelectron momentum distribution. 
+\textbf{Left:} Angular deviation $\Delta \theta$ of the first three ATI rings as a function of the relative phase $\phi$ (in degrees) between the circularly and linearly polarized components of the two-color laser field. The shifts are extracted from the maxima of the corresponding rings in the distribution and show opposite trends for different rings due to interference effects.
+\textbf{Right:} Polarization-plane momentum distribution at $\phi = 0$, highlighting the angular locations of the first three ATI rings (labeled Ring 1, Ring 2, and Ring 3). The red dashed line marks the polarization axis of the linear component. The black solid lines denote the measured angular positions used in the left panel. The observed shift in ring positions with changing $\phi$ provides insight into the nonlinear interference and trajectory reshaping in strong-field ionization.
+}
+\end{figure}
+Finally, extending these concepts to mid-infrared driving fields may enable attoclock measurements with improved energy resolution, as the larger cycle-averaged quiver amplitude would amplify the phase-dependent momentum shifts shown in Fig.~\ref{Fig_Angularshift}. Such developments could bridge the gap between attosecond angular streaking and laser-induced electron diffraction, offering a unified framework for probing matter with combined attosecond temporal and angstrom spatial resolution.
+
+

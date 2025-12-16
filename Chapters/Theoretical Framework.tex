@@ -1,0 +1,356 @@
+
+\chapter{The Strong Field Approximation}\label{chap:Theory}
+In this chapter, we provide a comprehensive overview of the Strong Field Approximation, a theoretical framework widely used to model ionization processes in the presence of intense laser fields. The SFA simplifies the description of electron dynamics by neglecting the Coulomb interaction between the ionized electron and the parent ion after the ionization event. This approximation has proven to be highly effective in explaining key phenomena observed in above-threshold ionization, high-harmonic generation, and nonsequential double ionization.
+
+We begin by outlining the theoretical foundations of the SFA, including its derivation and the assumptions underlying its formulation. The standard approach to the SFA is based on the dipole approximation, which is valid in weakly relativistic regimes. However, in strong-field scenarios involving high-intensity and long-wavelength laser pulses, the dipole approximation becomes inadequate. Consequently, we explore the limitations of this approximation and introduce extensions to account for nondipole effects, such as the influence of the Lorentz force and photon momentum transfer. These extensions enable a more accurate description of strong-field ionization in the nonperturbative regime.
+
+\section{Theoretical Foundations}
+The primary goal of a theoretical framework for ATI is to calculate the energy- and angle-resolved photoionization probability \( \mathbb{P}(\mathbf{p}) \) for an atomic system interacting with a laser field. This process begins with solving the time-dependent Schrödinger equation (TDSE), which governs the quantum evolution of the electron's wavefunction \( |\psi(t)\rangle \). The Hamiltonian \( \hat{H}(\mathbf{r},t) \) in this context includes the electron's kinetic energy, its interaction with the external laser field, and the potential energy due to the atomic core. The Hamiltonian is expressed as \cite{Lin_Le_Jin_Wei_2018}
+\begin{equation}
+    \hat{H}(\mathbf{r},t) = \frac{1}{2} \left( \hat{\mathbf{p}} - q\mathbf{A}(\mathbf{r}, t) \right)^2 + q\phi(\mathbf{r}, t) + V(\mathbf{r}),
+    \label{EQ:Hamiltonian}
+\end{equation}
+where \( q = -e \) is the electron charge, \( \phi(\mathbf{r}, t) \) and \( \mathbf{A}(\mathbf{r}, t) \) represent the scalar and vector potentials of the laser field, respectively, and \( V(\mathbf{r}) \) is the atomic binding potential. This Hamiltonian captures the influence of the oscillating electric and magnetic fields of the laser on the electron's dynamics.
+
+To solve the TDSE, an initial wavefunction \( |\psi(t_0)\rangle \) is specified, typically representing the bound state of the electron before the laser interaction begins. As the system evolves under the influence of the laser field, the probability of detecting an electron with a specific momentum \( \mathbf{p} \) is determined by projecting the final state \( |\psi(t \to \infty)\rangle \) onto the continuum state \( |\psi_{\mathbf{p}}(t)\rangle \), which corresponds to a free electron with momentum \( \mathbf{p} \).
+
+The differential photoionization probability, which describes the likelihood of emitting an electron with energy \( \epsilon_p = \frac{\mathbf{p}^2}{2} \) into a solid angle element \( d\Omega_{\mathbf{p}} \), is given by \cite{Milosevic2006}
+\begin{equation}
+    \mathbb{P}(\mathbf{p}) = |T(\mathbf{p})|^2 \frac{d^3\mathbf{p}}{d\Omega_{\mathbf{p}} d\epsilon_p} = p |T(\mathbf{p})|^2,
+    \label{EQ:differential_photoionization_probability}
+\end{equation}
+where \( T(\mathbf{p}) \) is the transition amplitude, quantifying the strength of the transition from the bound state to the continuum state. The transition amplitude is defined as:
+\begin{equation}
+    T(\mathbf{p}) = \lim_{t \to \infty} \langle \psi_{\mathbf{p}}(t) | \psi(t) \rangle.
+    \label{EQ:transition_amplitude}
+\end{equation}
+This formalism highlights how the interaction between the electron and the intense laser field drives the ionization process. The vector potential \( \mathbf{A}(\mathbf{r}, t) \) and scalar potential \( \phi(\mathbf{r}, t) \) play critical roles in shaping the electron's trajectory and final momentum distribution. At high laser intensities, non-perturbative effects become significant, necessitating advanced theoretical models such as the SFA and saddle-point methods to accurately describe the ionization dynamics.
+
+The evolution of the electron's wavefunction \( |\psi(t)\rangle \) under the influence of the external field is governed by the Hamiltonian \( \hat{H} \). The unitary time-evolution operator \( \hat{U}(t, t_0) \) describes the transition from the initial state \( |\psi(t_0)\rangle \) to the final state
+\begin{equation}
+    |\psi(t)\rangle = \hat{U}(t, t_0)|\psi(t_0)\rangle.
+    \label{eq:wave_function}
+\end{equation}
+The time-evolution operator \( \hat{U}(t, t_0) \) satisfies the time-dependent Schrödinger equation \cite{Bohm1986}
+\begin{equation}
+    i \frac{\partial}{\partial t} \hat{U}(t, t_0) = \hat{H}(\mathbf{r},t)\hat{U}(t, t_0).
+    \label{eq:schrodinger}
+\end{equation}
+The operator \( \hat{U}(t, t_0) \) adheres to the normalization condition \( \hat{U}(t_0, t_0) = 1 \) and the composition principle, which allows it to be factorized at intermediate times
+\begin{equation}
+    \hat{U}(t, t_0) = \hat{U}(t, \tau) \hat{U}(\tau, t_0), \quad \forall \tau.
+    \label{eq:composition}
+\end{equation}
+When the total Hamiltonian \( \hat{H}(\mathbf{r},t) \) can be decomposed into two components
+\begin{equation}
+    \hat{H}(\mathbf{r},t) = \hat{H}_1(\mathbf{r}) + \hat{H}_2(\mathbf{r},t),
+    \label{eq:hamiltonian_decomp}
+\end{equation}
+the Dyson series expansion provides a way to express the full evolution operator in terms of contributions from these components \cite{Sakurai2020}
+\begin{equation}
+    \hat{U}(t, t_0) = \hat{U}_1(t, t_0) - i \int_{t_0}^{t} d\tau \hat{U}(t, \tau)\hat{H}_2(\mathbf{r},\tau)\hat{U}_1(\tau, t_0),
+    \label{eq:dyson_expansion}
+\end{equation}
+where \( \hat{U}_1 \) is the evolution operator corresponding to \( \hat{H}_1(\mathbf{r})\). This expansion allows for the analysis of perturbative contributions from \( \hat{H}_2(\mathbf{r},t) \).
+
+Assuming the Hamiltonian components are defined as
+\begin{equation}
+	    \hat{H}_1(\mathbf{r}) = \frac{\hat{\mathbf{p}}^2}{2} + V(\mathbf{r}), \quad \hat{H}_2(\mathbf{r},t) = V_{le}(\mathbf{r}, t),
+    \label{eq:assumed_hamiltonian}
+\end{equation}
+the transition amplitude can be derived as
+\begin{equation}
+    T(\mathbf{p}) = \lim_{t\to\infty} \langle\psi_{\mathbf{p}}(t)|\psi(t)\rangle.
+    \label{eq:transition_amplitude}
+\end{equation}
+Expanding the evolution operator within this framework yields
+\begin{eqnarray}
+    T(\mathbf{p}) &=& \lim_{t\to\infty, t_0\to-\infty} \Bigg[ \langle\psi_{\mathbf{p}}(t)|\hat{U}_A(t, t_0)|\psi_0(t_0)\rangle \nonumber \\
+    && - i \int_{t_0}^{t} d\tau \langle\psi_{\mathbf{p}}(t)|\hat{U}(t, \tau)V_{le}(\mathbf{r}, \tau)\hat{U}_A(\tau, t_0)|\psi_0(t_0)\rangle \Bigg]. 
+    \label{eq:expanded_amplitude}
+\end{eqnarray}
+
+Since the final continuum state \( |\psi_{\mathbf{p}}(t)\rangle \) and the initial bound state \( |\psi_0(t_0)\rangle \) are eigenstates of \( \hat{H}_A \) and orthogonal, the first term vanishes, leading to:
+\begin{equation}
+    T(\mathbf{p}) = -i \int_{t_0}^{t} d\tau \langle\psi_{\mathbf{p}}(t)|\hat{U}(t, \tau)V_{le}(\mathbf{r}, \tau)|\psi_0(t_0)\rangle.
+    \label{eq:final_result}
+\end{equation}
+Reapplying the Dyson expansion results in
+\begin{equation}
+    T(\mathbf{p}) = -i \int_{t_0}^{t} d\tau \int_{t_0}^{\tau} d\tau' \langle\psi_{\mathbf{p}}(t)|\hat{U}(t, \tau')V(\mathbf{r})\hat{U}_{le}(\tau', \tau)V_{le}(\mathbf{r}, \tau)|\psi_0(t_0)\rangle.
+    \label{eq:dyson_reapplication}
+\end{equation}
+To simplify the problem within the SFA, the following assumptions are made \cite{Brabec2008}
+\begin{enumerate}
+    \item The atomic potential \( V(\mathbf{r}) \) is neglected for continuum state evolution, approximating \( \hat{U} \approx \hat{U}_{le} \).
+    \item The final state of the electron is assumed to be a free plane wave, given by \( \langle r|\psi_{\mathbf{p}}(t)\rangle = (2\pi)^{-3/2} e^{i\mathbf{p} \cdot \mathbf{r} - i \epsilon_p t} \).
+    \item The initial bound state \( |\psi_0(t_0)\rangle \) does not interact with other bound states under the external field.
+\end{enumerate}
+Within this approximation, the evolution operator \( \hat{U}_{le} \) can be represented in terms of a momentum basis
+\begin{equation}
+    \hat{U}_{le}(t, t') = \int d^3k\ |\chi_{\mathbf{k}}(t)\rangle\langle\chi_{\mathbf{k}}(t')|.
+    \label{eq:momentum_basis}
+\end{equation}
+Combining these assumptions, the transition amplitude \( T(\mathbf{p}) \) can be expressed as:
+\begin{eqnarray}
+    T(\mathbf{p}) &=& \lim_{t \to \infty} \lim_{t_0 \to -\infty} 
+    \Bigg[
+    -i \int_{t_0}^t \mathrm{d}\tau \int \mathrm{d}^3\mathbf{k} \, \langle \mathbf{p}(t) | \chi_{\mathbf{k}}(t) \rangle 
+    \langle \chi_{\mathbf{k}}(\tau) | V_{\mathrm{le}}(\mathbf{r}, \tau) | \psi_0(\tau) \rangle \nonumber \\
+    & & + (-i)^2 \int_{t_0}^t \mathrm{d}\tau \int_{\tau}^t \mathrm{d}\tau' \int \mathrm{d}^3\mathbf{k} \, \langle \mathbf{p}(t) | \chi_{\mathbf{k}}(t) \rangle \nonumber \\
+    & & \times \langle \chi_{\mathbf{k}}(\tau') | V(\mathbf{r}) U_{\mathrm{le}}(\tau', \tau) V_{\mathrm{le}}(\mathbf{r}, \tau) | \psi_0(\tau) \rangle
+    \Bigg].
+    \label{eq:transition-amplitude}
+\end{eqnarray}
+To further simplify, we take the limit \( t \to \infty \), using the identity:
+\begin{equation}
+    \lim_{t \to \infty} \langle \mathbf{p}(t) | \chi_{\mathbf{k}}(t) \rangle = e^{i \varphi_\infty} \delta(\mathbf{p} - \mathbf{k}),
+    \label{eq:delta-identity}
+\end{equation}
+where \( \varphi_\infty \) is an arbitrary phase factor that does not affect the physical results. Applying this identity, the transition amplitude reduces to:
+\begin{equation}
+    T(\mathbf{p}) = T_0(\mathbf{p}) + T_1(\mathbf{p}),
+    \label{eq:sfa-transition-amplitude}
+\end{equation}
+where \( T_0(\mathbf{p}) \) and \( T_1(\mathbf{p}) \) are defined as:
+\begin{equation}
+    T_0(\mathbf{p}) = -i \int_{-\infty}^\infty \mathrm{d}\tau \, \langle \chi_{\mathbf{p}}(\tau) | V_{\mathrm{le}}(\mathbf{r}, \tau) | \psi_0(\tau) \rangle,
+    \label{eq:t0-term}
+\end{equation}
+and
+\begin{equation}
+    T_1(\mathbf{p}) = (-i)^2 \int_{-\infty}^\infty \mathrm{d}\tau \int_{\tau}^\infty \mathrm{d}\tau' \, \langle \chi_{\mathbf{p}}(\tau') | V(\mathbf{r}) U_{\mathrm{le}}(\tau', \tau) V_{\mathrm{le}}(\mathbf{r}, \tau) | \psi_0(\tau) \rangle.
+    \label{eq:t1-term}
+\end{equation}
+Here, \( T_0(\mathbf{p}) \) corresponds to the direct ionization pathway, where the electron is ionized directly from the ground state \( | \psi_0 \rangle \) due to the interaction potential \( V_{\mathrm{le}}(\mathbf{r}, \tau) \). The term \( T_1(\mathbf{p}) \) represents a more complex process involving rescattering effects, where the electron interacts with the potential \( V(\mathbf{r}) \) after ionization.
+
+The interaction between a laser field and an atom is a cornerstone of strong-field physics. The theoretical description of this interaction can be formulated in different gauges, each offering unique insights and computational advantages. In this section, we focus on the velocity gauge, which is particularly well-suited for studying strong-field ionization and high-energy processes. We also discuss the length gauge for comparison and explore the concept of gauge invariance, emphasizing its importance in ensuring consistent physical predictions. Special attention is given to the gauge dependence of the SFA.
+
+\section{Interaction in Velocity and Length Gauge}
+
+The velocity gauge, also known as the \textit{minimal coupling gauge}, is derived from the minimal coupling principle in electrodynamics. In this gauge, the interaction between the laser field and the atom is described by the vector potential \(\mathbf{A}(t)\), which modifies the momentum operator in the Hamiltonian. The total Hamiltonian in the velocity gauge is given by:
+
+\[
+H_{\text{vel}} = \frac{1}{2m} \left( \mathbf{p} - e\mathbf{A}(t) \right)^2 + V(\mathbf{r}),
+\]
+
+where \(\mathbf{p}\) is the canonical momentum, \(e\) is the electron charge, \(m\) is the electron mass, and \(V(\mathbf{r})\) is the atomic potential. The vector potential \(\mathbf{A}(t)\) is related to the electric field \(\mathbf{E}(t)\) of the laser by \(\mathbf{E}(t) = -\partial_t \mathbf{A}(t)\).
+
+The velocity gauge is particularly advantageous for numerical simulations and perturbative calculations in strong-field ionization. This is because the interaction term \(\mathbf{p} \cdot \mathbf{A}(t)\) is linear in the momentum, simplifying the treatment of high-energy processes such as ATI and high-harmonic generation HHG. Additionally, the velocity gauge naturally incorporates the kinetic energy of the electron in the presence of the laser field, making it ideal for describing processes involving free electrons.
+
+One of the key strengths of the velocity gauge is its computational efficiency. For example, in numerical solutions of the TDSE, the velocity gauge often leads to faster convergence compared to other gauges. This is particularly important in strong-field physics, where the laser fields are intense and the dynamics are highly nonlinear. Furthermore, the velocity gauge provides a clear framework for understanding the role of the electron's momentum in ionization processes, which is crucial for interpreting experimental results.
+
+However, it is important to note that the SFA is gauge-dependent. In the velocity gauge, the SFA is formulated by neglecting the Coulomb potential \(V(\mathbf{r})\) in the Hamiltonian and treating the electron as a free particle in the presence of the laser field. This leads to the so-called Volkov states, which are exact solutions for a free electron in a laser field. The SFA in the velocity gauge is particularly effective for describing processes such as ATI and HHG, where the electron's interaction with the laser field dominates over the atomic potential.
+
+For completeness, we briefly discuss the length gauge, which is derived by performing a unitary transformation on the velocity gauge Hamiltonian. In the length gauge, the interaction between the laser field and the atom is described by the electric field \(\mathbf{E}(t)\) acting on the dipole moment of the atom. The Hamiltonian in the length gauge is given by:
+
+\[
+H_{\text{len}} = \frac{\mathbf{p}^2}{2m} + V(\mathbf{r}) - e\mathbf{r} \cdot \mathbf{E}(t),
+\]
+
+where \(\mathbf{r}\) is the position operator of the electron. The term \(-e\mathbf{r} \cdot \mathbf{E}(t)\) represents the dipole interaction between the atom and the laser field.
+
+While the length gauge provides a more intuitive description of tunneling ionization and bound-state dynamics \cite{Chen2009,Kjeldsen2004}, it can be computationally challenging for problems involving high-energy electrons or long propagation times. This is because the dipole interaction term can lead to rapid oscillations in the wavefunction, requiring finer numerical grids and smaller time steps. Despite these challenges, the length gauge remains a valuable tool for understanding the physical mechanisms underlying strong-field processes.
+
+A fundamental principle in electrodynamics is gauge invariance, which states that the physical predictions of a theory should not depend on the choice of gauge. In the context of laser-atom interactions, this means that the velocity gauge and the length gauge must yield identical results for observable quantities, such as ionization probabilities and harmonic spectra. However, the mathematical forms of the Hamiltonians in these gauges are different, leading to distinct theoretical and computational approaches.
+
+Gauge invariance is ensured by the fact that the velocity gauge and the length gauge are related by a unitary transformation. Specifically, the wavefunctions in the two gauges are connected by a phase factor that depends on the vector potential \(\mathbf{A}(t)\):
+
+\[
+\psi_{\text{len}}(\mathbf{r}, t) = \exp\left( -\frac{ie}{\hbar} \mathbf{r} \cdot \mathbf{A}(t) \right) \psi_{\text{vel}}(\mathbf{r}, t).
+\]
+
+This transformation preserves the physical content of the theory, as it leaves the expectation values of observables unchanged \cite{reiss2022,Vabek2022}. However, the choice of gauge can influence the interpretation of the underlying physics \cite{Bauer2005}. For example, in the velocity gauge, the interaction is described in terms of the electron's momentum, which is particularly useful for understanding high-energy processes and free-electron dynamics. In contrast, the length gauge emphasizes the role of the electron's position, providing a clearer picture of tunneling ionization and bound-state dynamics.
+
+The gauge dependence of the SFA is an important consideration in strong-field physics \cite{Bauer2005}. While the SFA is a powerful tool for understanding laser-atom interactions, its predictions can vary depending on the choice of gauge. This highlights the need for careful interpretation of results obtained using the SFA and underscores the importance of gauge invariance as a guiding principle in theoretical calculations.
+
+In practice, the choice of gauge is often dictated by the specific problem at hand. For strong-field ionization and high-energy processes, the velocity gauge is typically preferred due to its computational efficiency and natural incorporation of the electron's kinetic energy. However, the length gauge may be more suitable for problems involving tunneling ionization or bound-state dynamics. Regardless of the gauge chosen, the principle of gauge invariance ensures that the physical predictions are consistent and reliable. In the rest of our thesis, we will be only considering the velocity guage unless otherwise stated.
+
+\section{Dipole Approximation and Beyond in Laser–Atom Interaction}
+The dynamics of an electron in a laser field are profoundly influenced by the oscillating electromagnetic forces acting upon it. In the simplest scenario, where the laser's spatial variation is negligible over the scale of the electron’s motionm, the dipole approximation yields the well-known Volkov phase, a key ingredient in describing free-electron states in strong fields. However, as laser intensities or wavelengths rise , this approximation breaks down: the magnetic component of the Lorentz force, and spatial inhomogeneities begin to play decisive roles. This section explores how the Volkov phase evolves in and  beyond the dipole regime, capturing nondipole corrections that arise when the electron experiences the full spacetime structure of the laser pulse.
+\subsection{Formulation in the Dipole Approximation}
+When an atom is exposed to an intense laser field, certain approximations can be employed to simplify the theoretical treatment of the problem. One such approximation is the dipole approximation, which is valid when the wavelength of the laser, \( \lambda_0 \), is significantly larger than the characteristic atomic dimension, such as the Bohr radius \( a_0 \). Under this condition, the spatial variation of the laser field within the interaction region can be neglected, and only the temporal dependence of the field is considered. This simplification is particularly useful for describing the interaction dynamics in strong-field physics.
+
+In the dipole approximation, the vector potential \( \mathbf{A}_0 \) of the laser pulse, as given in Eq.~\ref{eq:GeneralVectorPotential}, can be rewritten as:
+\begin{equation}
+    \mathbf{A}_0 = \frac{A_0}{\sqrt{1 + \epsilon^2}} f(t) \left[ \cos(\omega t + \phi_{\mathrm{CEP}})\mathbf{e}_x + \epsilon \Lambda \sin(\omega t + \phi_{\mathrm{CEP}})\mathbf{e}_y \right].
+    \label{eq:vectorPotential_Dipole}
+\end{equation}
+In the velocity gauge (denoted by superscript $V$) and within the dipole approximation, the evolution of the quantum state \( \chi^{(V)}(t) \) of an electron subjected to an external electromagnetic field is governed by the time-dependent Schrödinger equation. The TDSE in this context is expressed as
+\begin{equation}
+  i\,\frac{\partial}{\partial t}\,\chi^{(V)}(\mathbf r,t)
+  = \left[
+      -\frac{1}{2}\nabla^2
+      - i\,\mathbf A(t)\cdot\nabla
+      + \frac{1}{2}\mathbf A^2(t)
+    \right]\chi^{(V)}(\mathbf r,t).
+  \label{eq:TDSE_dipole}
+\end{equation}
+To facilitate further analysis, the wave function is represented in momentum space by introducing the Fourier transform:
+\begin{equation}
+    \tilde{\chi}^{(V)}(\mathbf{p}, t) = \langle \mathbf{p} | \chi^{(V)}(t) \rangle.
+    \label{eq:Fourier_transform}
+\end{equation}
+Substituting this transformation into the TDSE leads to the modified equation in momentum space:
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \tilde{\chi}^{(V)}(\mathbf{p}, t) = \left[ \frac{\mathbf{p}^2}{2} + \mathbf{A}(t) \cdot \mathbf{p} + \frac{1}{2} \mathbf{A}^2(t) \right] \tilde{\chi}^{(V)}(\mathbf{p}, t).
+    \label{eq:TDSE_momentum_space}
+\end{equation}
+Applying the method of separation of variables and integrating over time, the solution in momentum representation takes the exponential form:
+\begin{equation}
+    \tilde{\chi}^{(V)}(\mathbf{p}, t) = \exp \left( -\frac{i}{2} \int_{0}^{t} \left[ \mathbf{p} + \mathbf{A}(\tau) \right]^2 d\tau \right).
+    \label{eq:momentum_solution}
+\end{equation}
+By performing the inverse Fourier transform, the wave function in position representation is obtained:
+\begin{equation}
+    \chi_{\mathbf{p}}^{(V)}(\mathbf{r}, t) = C e^{i\mathbf{p} \cdot \mathbf{r} - \frac{i}{2} \int_{0}^{t} (\mathbf{p} + \mathbf{A}(\tau))^2 d\tau},
+    \label{eq:position_solution}
+\end{equation}
+where \( C \) is a normalization constant. To determine its value, the normalization condition is applied:
+\begin{equation}
+    \langle \chi_{\mathbf{p}}^{(V)}(\mathbf{r}, t) | \chi_{\mathbf{p'}}^{(V)}(\mathbf{r}, t) \rangle = \delta(\mathbf{p} - \mathbf{p'}).
+    \label{eq:normalization_condition}
+\end{equation}
+This condition leads to the conclusion that \( C = (2\pi)^{-3/2} \), resulting in the final expression for the Volkov wave function under the velocity gauge and dipole approximation:
+\begin{equation}
+    \chi_{\mathbf{p}}^{(V)}(\mathbf{r}, t) = (2\pi)^{-3/2} e^{i\mathbf{p} \cdot \mathbf{r}} e^{-\dot\iota S(\mathbf{p}, t)},
+    \label{Eq:VolkovState}
+\end{equation}
+where the phase factor, also known as the Volkov phase, is given by:
+\begin{equation}
+    S(\mathbf{p}, t) =  \frac{1}{2} \int_{0}^{t} (\mathbf{p} + \mathbf{A}(\tau))^2 d\tau.
+    \label{Eq:VolkovPhase}
+\end{equation}
+The Volkov phase describes the classical action of a free electron moving in the laser field. It encapsulates the influence of the laser field on the electron's motion and is a key component in understanding strong-field ionization processes.
+
+The Volkov wave function can also be expressed in the length gauge. As described earlier, the two gauges are related by a time-dependent gauge transformation:
+\begin{equation}
+    \chi_{\mathbf{p}}^{(L)}(\mathbf{r}, t) = e^{i \mathbf{r} \cdot \mathbf{A}(t)} \, \chi_{\mathbf{p}}^{(V)}(\mathbf{r}, t),
+    \label{Eq:GaugeTransformation}
+\end{equation}
+where \( \chi_{\mathbf{p}}^{(L)} \) and \( \chi_{\mathbf{p}}^{(V)} \) denote the Volkov states in the length and velocity gauges, respectively.
+
+Substituting Eq.~\eqref{Eq:VolkovState} into Eq.~\eqref{Eq:GaugeTransformation} yields
+\begin{equation}
+    \chi_{\mathbf{p}}^{(L)}(\mathbf{r}, t) = (2\pi)^{-3/2} \, e^{i(\mathbf{p} + \mathbf{A}(t)) \cdot \mathbf{r}} \, e^{-\dot\iota S(\mathbf{p}, t)}.
+    \label{Eq:VolkovLengthGauge}
+\end{equation}
+This expression shows that, in the length gauge, the instantaneous momentum of the electron is shifted by the vector potential \( \mathbf{A}(t) \), reflecting the direct coupling of the laser's electric field to the position operator in this gauge.
+
+To solve the Volkov phase, we begin by expressing the vector potential of an elliptically polarized pulse in a more compact form. Starting from the vector potential given in Eq.~\ref{eq:vectorPotential_Dipole}, we rewrite it as
+\begin{equation}
+    \mathbf{A}(t) = \sum_{j=0}^{2} \frac{\mathcal{A}_j}{\sqrt{1+\epsilon^2}} 
+    \left[ \cos(\omega_j t + \phi_{\mathrm{CEP}}) \mathbf{e}_x 
+    + \epsilon\Lambda \sin(\omega_j t + \phi_{\mathrm{CEP}}) \mathbf{e}_y \right],
+    \label{eq:VectorPotentialCompact}
+\end{equation}
+where the trigonometric products have been expanded. Here, the index \( j \) distinguishes between the lower (\( j=0 \)), central (\( j=1 \)), and upper (\( j=2 \)) frequency components of the pulse. The corresponding frequencies are defined as \( \omega_{0} = \left( 1 - \frac{1}{n_p} \right) \omega \), \( \omega_1 = \omega \), and \( \omega_2 = \left( 1 + \frac{1}{n_p} \right) \omega \), where \( \omega \) is the central frequency of the pulse and \( n_p \) represents the number of optical cycles in the pulse. The amplitudes of the vector potential components vary with frequency and are given by \( \mathcal{A}_{0} = -A_0/4 \), \( \mathcal{A}_1 = A_0/2 \), and \( \mathcal{A}_2 = -A_0/4 \), where \( A_0 \) is the peak amplitude of the vector potential. These expressions define the spectral characteristics of the field and its amplitude distribution across the frequency components. The lower (\( j=0 \)) and upper (\( j=2 \)) components have equal magnitudes but opposite signs, while the central component (\( j=1 \)) dominates with twice the amplitude of the side components.
+
+The corresponding vector potential, as well as its Fourier spectra for different optical cycles, is illustrated in Fig.~\ref{fig:Pulse_amplitude}. The figure provides a visual representation of the temporal and spectral properties of the pulse, highlighting the contributions of the lower, central, and upper frequency components to the overall structure of the vector potential.
+
+Using the vector potential \ref{eq:vectorPotential_Dipole}, we carry out the integration in the Volkov phase \ref{Eq:VolkovPhase} and obtain
+\begin{eqnarray}
+    S(\mathbf{p}, t) &=& \frac{1}{2} \mathbf{p}^2 t
+    + \frac{t}{4} \sum_{i=0}^{2} \mathcal{A}_i^2 
+    + \frac{1 - \epsilon^2}{1 + \epsilon^2} \sum_{i=0}^{2} \frac{\mathcal{A}_i^2}{8\omega_i} \sin(2\omega_i t + 2\phi_{\mathrm{CEP}}) \nonumber \\
+    && + \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i \mathcal{A}_j}{2 (\omega_i - \omega_j)} \sin((\omega_i - \omega_j)t) \nonumber \\
+    && + \frac{1 - \epsilon^2}{1 + \epsilon^2} \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i \mathcal{A}_j}{2 (\omega_i + \omega_j)} \sin((\omega_i + \omega_j)t + 2\phi_{\mathrm{CEP}}) \nonumber \\
+    && + \frac{p_x}{\sqrt{1 + \epsilon^2}} \sum_{i=0}^{2} \frac{\mathcal{A}_i}{\omega_i} \sin(\omega_i t + \phi_{\mathrm{CEP}}) \nonumber \\
+    && - \epsilon \Lambda \frac{p_y}{\sqrt{1 + \epsilon^2}} \sum_{i=0}^{2} \frac{\mathcal{A}_i}{\omega_i} \cos(\omega_i t + \phi_{\mathrm{CEP}}).
+    \label{Eq:VolkovPhaseSol}
+\end{eqnarray}
+The detailed derivation of this result is provided in the Appendix \ref{appendix-A}. Above, the Volkov phase was solved for the case of a plane wave laser pulse. However, the situation becomes more intricate when considering a twisted (or vortex) laser pulse, which carries orbital angular momentum and exhibits a complex spatial structure. Unlike plane waves, twisted pulses have non-trivial phase fronts and intensity distributions, characterized by a helical wavefront and a doughnut-shaped intensity profile. This spatial structure introduces additional components in the electron dynamics, particularly in the $z$-direction, which must be carefully accounted for in the analysis.
+
+To derive the Volkov phase for a twisted laser pulse, we follow a procedure analogous to that used for plane waves, but with crucial modifications to incorporate the three-dimensional nature of the pulse. The envelope of the twisted pulse must be expanded to include not only the transverse ($x$ and $y$) components but also the longitudinal ($z$) component. This expansion reflects the fact that the electron's interaction with the pulse is influenced by the spatially varying field structure. After performing the necessary integration over the pulse profile, we arrive at the following expression for the phase $S(\mathbf{p}, \tau)$:
+\begin{equation}
+	\begin{aligned}
+		S(\mathbf{p}, \tau) = \xi t &+ \sum_{j=1}^9 \gamma_j \cos\left(\phi_j^{(c)} - \omega_j^{(c)} t\right) \\
+		&+ \sum_{l=1}^{13} \sigma_l \sin\left(\phi_l^{(s)} - \omega_l^{(s)} t\right),
+	\end{aligned}
+	\label{Eq:VolkovPhaseSolutionTwisted}
+\end{equation}
+where $\mathbf{p}$ denotes the asymptotic momentum of the photoelectron, and $\tau$ represents the proper time. The first term, $\xi t$, corresponds to a time-dependent phase accumulation that is linear in $t$, with $\xi$ being a proportionality constant determined by the laser and electron parameters. The subsequent terms involve sums over harmonic contributions, with amplitudes $\gamma_j$ and $\sigma_l$, frequencies $\omega_j^{(c)}$ and $\omega_l^{(s)}$, and phases $\phi_j^{(c)}$ and $\phi_l^{(s)}$. 
+
+The parameters $\xi$, $\gamma_j$, and $\sigma_l$ are intricately linked to the properties of the twisted laser pulse, including its amplitude $A_0$, the number of photons $n_p$, the central frequency $\omega$, the topological charge is denoted $m_{\gamma}$ or $m_{\ell}$ (which determines the amount of orbital angular momentum carried by the pulse), and the angle $\theta_k$ between the pulse propagation axis and the electron momentum. Additionally, the impact parameter $\mathbf{b}$, which describes the transverse displacement of the electron's initial position relative to the pulse axis, plays a significant role in shaping these parameters. 
+
+The frequencies $\omega_j^{(c)}$ and $\omega_l^{(s)}$ are particularly noteworthy as they represent the characteristic frequencies associated with the electron's quiver motion in the presence of the Bessel pulse field. These frequencies emerge from the interplay between the electron's momentum and the spatially inhomogeneous fields of the twisted pulse. The phases $\phi_j^{(c)}$ and $\phi_l^{(s)}$ encode the initial conditions and the geometric relationship between the electron trajectory and the pulse's helical wavefronts.  A comprehensive derivation of these quantities, along with their explicit mathematical expressions, is provided in Appendix \ref{appendix-A}.
+
+\subsection{Breakdown of the Dipole Approximation in Strong Fields}
+The dipole approximation, as mentioned before, is a widely used simplification in atomic and laser physics, justified by the assumption that the wavelength of the laser radiation is much larger than the spatial extent of the atomic system. This approximation treats the laser field as spatially uniform, neglecting its spatial variation over the atomic scale. However, this simplification fails to account for the full nature of laser radiation, which consists of transverse electromagnetic waves with both electric ($\mathbf{E}$) and magnetic ($\mathbf{B}$) field components. While the magnetic field is significantly weaker than the electric field, with its magnitude given by $|\mathbf{B}| = |\mathbf{E}|/c$, its influence cannot always be ignored. The force exerted by the magnetic field on an electron is smaller than that of the electric field by a factor of $v/c$, where $v$ is the electron velocity and $c$ is the speed of light in vacuum. Under typical conditions, the assumption $v/c \ll 1$ holds, rendering the magnetic field's contribution negligible. However, in high-intensity laser fields, electrons can attain velocities such that $v/c$ is no longer negligible, leading to significant magnetic field effects along the propagation direction \cite{Smeenk2011,Suster2023,Ivanov2016,Lin2022,Forre2022,Madsen2022,Madsen2022Apr,Kahvedzic2022,He2022,Jensen2020,Birger2019May}.
+While the discussion above focuses on the breakdown of the dipole approximation in the long-wavelength (low-frequency) regime, where magnetic and retardation effects become significant, the approximation can also fail in the opposite limit of high photon frequencies. In this case, the wavelength of the radiation becomes comparable to or smaller than the spatial extent of the atomic orbital, such that the field can no longer be considered spatially uniform over the atom, i.e., $k r \sim 1$, where $k = \omega / c$ is the wave number. This high-frequency limit represents the conventional boundary of validity of the dipole approximation in atomic physics, where spatial variations of the electromagnetic field across the atom must be explicitly included in the interaction Hamiltonian.
+\begin{figure}
+	\centering
+	\includegraphics[width=1.\textwidth]{gfx/Final/Theory/nondipole.pdf}
+	\caption{The influence of the Lorentz force on the dynamics of an electron released into the continuum is illustrated.
+(a) Upon being liberated from its parent ion into the continuum, the electron is accelerated within the transverse polarization plane by the electric field 
+\(\mathbf{E} = \mathbf{E} (\mathbf{r},t)\). 
+This acceleration results in a velocity 
+\(\mathbf{v}(t) = (v_x, v_y, 0)\). 
+The classical Lorentz force, 
+\(\mathbf{F}_L = q[\mathbf{v}(t) \times \mathbf{B}(\mathbf{r},t)]\), 
+induces a longitudinal momentum shift \(\Delta p_z\) along the beam propagation direction. This shift becomes significant for electrons with sufficiently high velocities.
+(b) Trajectory of the photoelectron within the \textit{reaction} plane, illustrating the distance \(r_z\) traveled along the beam axis during each optical cycle. The paths are depicted for two distinct wavelengths of the incident beam: 
+\(\lambda = 800\) nm (blue line),  \(\lambda = 1600\) nm (orange line) and \(\lambda = 3200\) nm (green line) with a constant intensity at $10^{14} \text{W/cm}^2$.
+(c) The characteristic \textit{figure-eight motion} of the electron in the field, with an amplitude \(\beta_0\) along the beam axis, after subtracting the constant average drift \(\langle v_z \rangle t\). For amplitudes 
+\(\beta_0 \gtrsim a_0\), the influence of the Lorentz force becomes significant, necessitating a quantum mechanical treatment.}
+	\label{fig:nondipole}
+\end{figure}
+
+The influence of the Lorentz force on the dynamics of an electron released into the continuum is illustrated in Fig.~\ref{fig:nondipole}. When the electron is liberated from its parent ion into the continuum, it is accelerated within the transverse polarization plane by the electric field \(\mathbf{E} = \mathbf{E}(\mathbf{r},t)\), resulting in a velocity \(\mathbf{v}(t) = (v_x, v_y, 0)\). The classical Lorentz force, \(\mathbf{F}_L = q[\mathbf{v}(t) \times \mathbf{B}(\mathbf{r},t)]\), induces a longitudinal momentum shift \(\Delta p_z\) along the beam propagation direction \cite{Fritzsche2022}. This shift becomes significant for electrons with sufficiently high velocities.
+
+The trajectory of the photoelectron within the \textit{reaction} plane is depicted in Fig.~\ref{fig:nondipole}(b), illustrating the distance \(r_z\) traveled along the beam axis during each optical cycle. The paths are shown for three distinct wavelengths of the incident beam \(\lambda = 800\) nm , \(\lambda = 1600\) nm and \(\lambda = 3200\) nm. For shorter wavelengths (e.g., 800 nm), the electron's motion is more confined, while for longer wavelengths (e.g., 1600 nm and 3200 nm), the electron travels a greater distance along the propagation axis. This wavelength dependence highlights the role of the laser field's temporal and spatial structure in shaping the electron's trajectory.
+
+The characteristic \textit{figure-eight motion} of the electron is observed when the constant average drift \(\langle v_z \rangle t\) is subtracted from the motion, as shown in Fig.~\ref{fig:nondipole}(c). The amplitude of this motion along the beam axis is characterized by the parameter \(\beta_0\). For small amplitudes (\(\beta_0 \ll a_0\)), the motion is dominated by the electric field, and the dipole approximation remains valid. However, for larger amplitudes (\(\beta_0 \gtrsim a_0\)), the influence of the Lorentz force becomes significant, leading to a breakdown of the dipole approximation. In this regime, the electron's motion exhibits a pronounced figure-eight pattern, with the major axis aligned with the electric field's polarization direction and the lobes extending along the propagation axis. This behavior underscores the importance of considering the full electromagnetic nature of the laser field in high-intensity regimes.
+The deviation from the dipole approximation's unidirectional motion can be quantified using the parameter $\beta_0$, which characterizes the amplitude of the electron's motion along the propagation axis due to the magnetic field. This parameter is defined as:
+
+\begin{equation}
+    \beta_0 \approx \frac{U_P}{2c\omega} = \frac{I}{8c\omega^3},
+\end{equation}
+
+where $U_P = I / 4\omega^2$ is the ponderomotive energy, $I$ is the laser intensity, and $\omega$ is the angular frequency of the laser field. When $\beta_0 \approx 1$ atomic unit (a.u.), the effects of the magnetic field become significant, leading to the breakdown of the dipole approximation. This regime is particularly relevant in high-intensity laser experiments, where the electron's motion is no longer confined to the polarization axis, and the figure-eight trajectory becomes pronounced. The parameter $\beta_0$ thus serves as a critical indicator of the validity of the dipole approximation and the onset of magnetic field effects in laser-matter interactions.
+
+In high-intensity laser fields, the electron's velocity can approach relativistic values, making the condition $v/c \ll 1$ invalid. Under these circumstances, the magnetic field's influence becomes non-negligible, and the dipole approximation fails to accurately describe the electron dynamics. The figure-eight trajectory observed in such regimes highlights the importance of considering the full electromagnetic nature of the laser field, particularly in experiments involving strong-field ionization, high-harmonic generation, and laser-driven electron acceleration. Understanding these effects is crucial for interpreting experimental results and developing theoretical models that go beyond the dipole approximation.
+
+\subsection{Extensions to Nondipole Effects}\label{sec:volkov_derivation}
+To accurately incorporate nondipole effects within the SFA, it is necessary to express the vector potential of the driving laser field as a function of both position \(\mathbf{r}\) and time \(t\). This spatial and temporal dependence introduces additional complexities, as the laser field now includes both electric and magnetic field components. Such a formulation is essential for a precise description of the laser field's influence on electron dynamics in the strong-field regime. When a laser field propagates with an angular frequency \(\omega\) along the wave vector direction \(\mathbf{k} = \frac{\omega}{c}\hat{k}\), the vector potential can be expressed as a superposition of plane-wave components
+\begin{eqnarray}
+    \mathbf{A}(\mathbf{r},t) &=& \int d^{3}\mathbf{k} \, \mathbf{A} (\mathbf{k},t), \nonumber \\ 
+    \mathbf{A} (\mathbf{k},t) &=& \mathrm{Re}\left\{\mathbf{a} (\mathbf{k}) e^{\dot{\iota} (\mathbf{k} \cdot \mathbf{r} - \omega_{\mathbf{k}} t)}\right\}.
+    \label{eq:Fourier_vector_potential}
+\end{eqnarray}
+Here, \(\mathbf{a} (\mathbf{k})\) represents the complex Fourier coefficient of the vector potential. This formalism allows us to describe the continuum state solution, as presented in Ref.~\cite{Birger2019May}, in the form of a modified Volkov state
+\begin{equation}
+    \chi_{\mathbf{p}} (\mathbf{r},t) = \frac{1}{(2\pi)^{\frac{3}{2}}} e^{-\dot{\iota} (\epsilon_{p} t - \mathbf{p} \cdot \mathbf{r})} e^{-\dot{\iota} \Gamma(\mathbf{r},t)},
+    \label{eq:nondipole_volkov_state}
+\end{equation}
+where \(\mathbf{p}\) is the electron's momentum, and \(\Gamma(\mathbf{r},t)\) is the modified Volkov phase. This phase accounts for the interaction between the electron and the electromagnetic field, incorporating the spatial and temporal variations of the field. The modified Volkov state provides a coherent description of the electron's trajectory and energy evolution under the influence of the external field.
+
+The modified Volkov phase, as derived in Ref.~\cite{Birger2019May}, can be expressed as
+\begin{eqnarray}
+    \Gamma(\mathbf{r},t) &=& \int d^{3}\mathbf{k} \; \rho(\mathbf{k}) \sin(\mathrm{u}(\mathbf{k}) + \theta(\mathbf{k})) \nonumber \\
+    && + \int d^{3}\mathbf{k} \int d^{3}\mathbf{k}' \Big[ \alpha^{+}(\mathbf{k},\mathbf{k}') \sin(\mathrm{u}(\mathbf{k}) + \mathrm{u}(\mathbf{k}') + \theta^{+}(\mathbf{k},\mathbf{k}')) \nonumber \\
+    && \quad + \alpha^{-}(\mathbf{k},\mathbf{k}') \sin(\mathrm{u}(\mathbf{k}) - \mathrm{u}(\mathbf{k}') + \theta^{-}(\mathbf{k},\mathbf{k}')) \Big] \nonumber \\
+    && + \frac{1}{2} \int d^{3}\mathbf{k} \int d^{3}\mathbf{k}' \sigma(\mathbf{k},\mathbf{k}') \rho(\mathbf{k}) \left( \frac{\sin(\mathrm{u}(\mathbf{k}) + \mathrm{u}(\mathbf{k}') + \theta(\mathbf{k}) + \xi(\mathbf{k},\mathbf{k}'))}{\eta(\mathbf{k}) + \eta(\mathbf{k}')} \right. \nonumber \\
+    && \quad \left. + \frac{\sin(\mathrm{u}(\mathbf{k}) - \mathrm{u}(\mathbf{k}') + \theta(\mathbf{k}) - \xi(\mathbf{k},\mathbf{k}'))}{\eta(\mathbf{k}) - \eta(\mathbf{k}')} \right). \label{eq:modified_volkov_phase}
+\end{eqnarray}
+In this formulation, \(\rho(\mathbf{k})\), \(\theta(\mathbf{k})\), \(\sigma(\mathbf{k},\mathbf{k}')\), and \(\xi(\mathbf{k},\mathbf{k}')\) are projection operators that depend on the Fourier components of the vector potential \(\mathbf{a}(\mathbf{k})\) and the electron's momentum \(\mathbf{p}\). These operators describe how \(\mathbf{p}\) and the wave vector \(\mathbf{k}\) project onto the momentum-space representation of the field \(\mathbf{A}(\mathbf{k}',t)\). The terms \(\alpha^{\pm}(\mathbf{k},\mathbf{k}')\) represent ponderomotive contributions associated with each mode, proportional to the inner product of the Fourier coefficients, \([\mathbf{a}(\mathbf{k}) \cdot \mathbf{a}(\mathbf{k}')]\). Detailed definitions of these operators are provided in Appendix \ref{appendix-B}, where we also introduce \(\eta(\mathbf{k}) = \mathbf{p} \cdot \mathbf{k} - \omega(\mathbf{k})\).
+
+For a few-cycle pulse with spatial dependence, the vector potential can be expressed as a sum of plane waves
+\begin{equation}
+    \mathbf{A}(\mathbf{r}, t) = \sum_{j=0}^{2} \frac{\mathcal{A}_j}{\sqrt{1 + \epsilon^2}} 
+    \left[ \cos(u_j + \phi_{\mathrm{cep}}) \mathbf{e}_x
+    + \epsilon \Lambda \sin(u_j + \phi_{\mathrm{cep}}) \mathbf{e}_y \right],
+    \label{Eq:nondipoleVactorPotential}
+\end{equation}
+where \( u_j = \mathbf{k}_j \cdot \mathbf{r} - \omega_j t \) is a shorthand notation. Using this vector potential, the modified Volkov phase can be solved by performing the time integration 
+\begin{eqnarray}
+    \Gamma(\mathbf{r}, t) &=& \sum_{j=0}^{2}\frac{\mathcal{A}_j^2}{4}\frac{u_j}{\eta_j(\mathbf{k})} + \frac{1-\epsilon^2}{1+\epsilon^2} \sum_{j=0}^{2} \frac{\mathcal{A}_j^2}{8\eta_j(\mathbf{k})} \sin(2u_j + 2\phi_{\mathrm{cep}}) \nonumber\\
+    &+& \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i\mathcal{A}_j}{2(\eta_i(\mathbf{k}) -\eta_j(\mathbf{k}))} \sin(u_i - u_j) \nonumber \\
+    &+& \frac{1-\epsilon^2}{1+\epsilon^2} \sum_{i=0}^{1} \sum_{j=i+1}^{2} \frac{\mathcal{A}_i\mathcal{A}_j}{2(\eta_i(\mathbf{k}) +\eta_j(\mathbf{k}))} \sin(u_i + u_j + 2\phi_{\mathrm{cep}}) \nonumber\\
+    &+& \frac{p_x}{\sqrt{1 + \epsilon^2}} \sum_{j=0}^{2} \frac{\mathcal{A}_j}{\eta_j(\mathbf{k})} \sin(u_j + \phi_{\mathrm{CEP}}) \nonumber \\
+    &-& \epsilon \Lambda \frac{p_y}{\sqrt{1 + \epsilon^2}} \sum_{j=0}^{2} \frac{\mathcal{A}_j}{\eta_j(\mathbf{k})} \cos(u_j + \phi_{\mathrm{CEP}}).
+    \label{Eq:VolkovPhaseSolNondipole}
+\end{eqnarray}
+The obtained solution closely resembles the one derived in the dipole approximation (Eq.~\ref{Eq:VolkovPhaseSol}), with the primary distinction being the inclusion of spatial dependence through the terms \( u_j \) and \( \eta_j(\mathbf{k}) \). This spatial dependence accounts for the nondipole effects, providing a more comprehensive description of the electron's interaction with the laser field.
+
+In this chapter, we introduced the Strong-Field Approximation and derived the corresponding Volkov phase for pulsed laser fields, building on the field descriptions established earlier. We examined both the dipole and non-dipole regimes of the SFA, presenting explicit derivations of the Volkov phase in each case. In the next chapter, we will leverage this framework to compute the final transition amplitude within the SFA formalism. Additionally, we will introduce the necessary mathematical tools to evaluate key physical observables, enabling a comprehensive analysis of strong-field processes.

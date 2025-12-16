@@ -1,0 +1,362 @@
+\chapter{Results and Discussion}
+\label{chap:results}  
+
+This chapter presents a comprehensive analysis of strong-field ionization dynamics, with a focus on few-cycle and structured laser pulses. The results are organized into four core themes, each addressing distinct aspects of photoelectron behavior through theoretical modeling. Building on the framework established in earlier chapters, we systematically investigate:  
+\begin{itemize}  
+    \item The interplay between ultrashort pulse durations and ionization yields, including energy and polarization dependencies (\ref{sec:few_cycle}) \cite{Dar2025comparisonjacobiangersaddlepoint}.  
+    \item Quantum interference signatures in above-threshold ionization (ATI) spectra and their linkage to Volkov phase dynamics (\ref{sec:interference}) \cite{Dar2024Apr}.  
+    \item Nondipole effects in high-intensity regimes, emphasizing wavelength scaling and pulse-cycle dependencies (\ref{sec:nondipole}) \cite{Dar2023May,Dar2023Atom}.  
+    \item The role of orbital angular momentum (OAM) in modifying ATI structures when using twisted beams (\ref{sec:twisted}) \cite{Dar2025May}.  
+\end{itemize}  
+The findings collectively reveal how non-trivial laser fields—whether through temporal confinement, phase structuring, or OAM coupling—can be harnessed to control electron emission.  
+\section{Ionization in few-cycle pulse}\label{sec:few_cycle}
+The ionization dynamics of argon atoms exposed to circularly polarized laser pulses are investigated through photoelectron momentum distributions (PMDs), computed using two distinct theoretical frameworks: the Jacobi-Anger (JA) expansion and the saddle-point (SP) approximation. Figure~\ref{Fig_PMD} presents a comparative analysis of these methods for varying pulse durations, revealing their respective strengths in modeling ionization phenomena.
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{gfx/Final/paper1/PMD.pdf}
+    \caption{
+        \label{Fig_PMD}
+        Photoelectron momentum distributions in the laser polarization plane for ionization of an argon atom by a circularly polarized laser pulse with a wavelength of 800 nm and peak intensity of \( 5 \times 10^{14} \) W/cm\(^2\).  
+		The top row (JA) presents results obtained using the Jacobi-Anger expansion, the middle row (SP) corresponds to the saddle-point method and the bottom row (NI) represents the results for numerical integration. Each column represents different pulse durations: two-cycle (left), four-cycle (middle), and eight-cycle (right) pulses. The color scale represents the normalized probability amplitude. 
+    }
+\end{figure*}
+
+The interference structures observed in the PMDs are intrinsically linked to the spectral properties of the laser pulse (cf.~\cite{Martiny2007}). As depicted in Fig.~\ref{fig:Pulse_amplitude}, the temporal profile and corresponding power spectrum of the pulse evolve significantly with duration. Shorter pulses (e.g., two cycles) exhibit a broad spectral distribution, facilitating numerous ionization pathways with comparable amplitudes. This spectral richness enhances quantum interference, leading to intricate oscillatory features in the momentum distributions. In contrast, longer pulses (four and eight cycles) possess a narrower frequency spectrum, resulting in more regular interference patterns, manifesting as distinct concentric rings.
+
+The JA method (top row of Fig.~\ref{Fig_PMD}) resolves fine interference structures, particularly for the two-cycle pulse, where high-frequency oscillations arise from coherent contributions of multiple ionization pathways. As the pulse extends to four and eight cycles, the PMDs transition into well-defined circular fringes, indicating reduced spectral broadening and more stable ionization dynamics.
+    
+In contrast, the SP method (bottom row of Fig.~\ref{Fig_PMD}) emphasizes dominant ionization pathways by evaluating only the most significant saddle points. Consequently, it captures the gross features of the PMDs but omits finer interference details. For the two-cycle pulse, the distribution appears diffuse and lacks high-order oscillations seen in the JA results. With increasing pulse duration, the SP approximation produces clearer ring-like structures corresponding to dominant ionization phases.
+
+The comparison reveals important trade-offs between computational accuracy and efficiency. While the JA expansion provides a complete quantum mechanical description including all interference effects, the SP method offers a computationally efficient alternative for identifying dominant ionization mechanisms. For the eight-cycle pulse, both methods converge to similar ring-like patterns, though the JA results retain weak interference features at low energies. This analysis underscores the need for method selection based on the desired balance between resolution and computational cost.
+
+To directly compare the predictions of the JA and SP approaches, we also evaluated Eq.~\ref{eq:direct-term} by performing a full numerical integration using the Gauss–quadrature method. This calculation avoids the approximations inherent in either the JA expansion or the SP method, and therefore serves as a reference within the SFA framework. The resulting momentum distributions allow us to identify which features are preserved or lost in each approximation, and to assess the physical origin of the differences observed in Fig.\ref{Fig_PMD}. The characteristic interference structures observed here are a hallmark of above-threshold ionization and are also visible in numerical solutions of the time-dependent Schrödinger equation \cite{Martiny_2009}. However, in TDSE calculations these interference patterns appear rotated due to the influence of the Coulomb potential, an effect absent in the strong-field approximation. Moreover, Martiny \emph{et al.} reported stronger interference at lower intensities compared to our results. This apparent discrepancy originates from the fact that they employ the peak intensity convention, with the vector potential amplitude defined as \(A_0=\sqrt{I_{\mathrm{peak}}}/\omega\), whereas in our calculation the intensity is defined through the cycle-averaged relation $I(\mathbf r,t) = \frac{A_0^2 \omega^2 c}{8\pi}.$ The difference between peak and cycle-averaged conventions leads to a  discrepancy in the quoted intensities, which reconciles the results of the two approaches.
+
+\subsection{Energy-Resolved Ionization Patterns in Strong Fields}
+The characteristic energy distributions of ionized electrons are systematically examined through above-threshold ionization (ATI) spectra, calculated using two complementary theoretical approaches. Figure~\ref{Fig_ATI} displays these spectra as functions of normalized kinetic energy $\varepsilon_p/\omega$, contrasting the saddle-point approximation (dashed red curves) with the full quantum mechanical treatment via Jacobi-Anger expansion (solid blue curves) for varying pulse durations and carrier-envelope phases.
+
+The interplay between temporal confinement and spectral composition manifests distinctly in the calculated ATI patterns. For the shortest two-cycle pulses, the Jacobi-Anger results reveal intricate oscillatory features with characteristic energy spacings of $0.5 \;\hbar\omega$ - a signature of broadband spectral interference that emerges from the pulse's substantial bandwidth. These quantum interference effects, while prominent in the complete theoretical treatment, are naturally absent in the saddle-point approximation due to its inherent focus on classical trajectory contributions.
+
+As the interaction duration extends to four and eight optical cycles, both methods converge toward more regular peak structures, though with notable differences in spectral resolution. The gradual transition from complex interference patterns to distinct energy peaks reflects the narrowing spectral bandwidth with increasing pulse duration, as predicted by Fourier-transform relations. This evolution underscores the fundamental connection between temporal pulse characteristics and resulting electron energy distributions.
+
+The carrier-envelope phase (CEP) demonstrates remarkable control over the ionization pathways, as evidenced by comparing $\varphi_{\mathrm{cep}} = 0$ (upper panels) and $\pi$ (lower panels) cases. The quantum mechanical treatment reveals CEP-dependent modifications to the interference structures, particularly for few-cycle pulses where the absolute phase strongly influences the temporal electric field profile.
+
+Figure~\ref{Fig_saddlepointxy} provides mechanistic insight into these phase effects, showing how different CEP values modify the dominant ionization windows. At zero CEP, two primary saddle points contribute comparably to the ionization process, while at $\pi$ CEP, a single dominant ionization channel emerges. This fundamental difference in strong-field dynamics explains the observed variations in spectral structure between the two phase conditions.
+
+The Jacobi-Anger expansion comprehensively captures all quantum interference pathways, resolving subtle spectral features that emerge from coherent superposition of ionization amplitudes. This complete treatment proves particularly valuable for few-cycle pulses where broadband interference dominates the electron dynamics. Conversely, the saddle-point approximation provides a computationally efficient framework that identifies dominant ionization mechanisms while naturally filtering out finer quantum interference effects. This approach yields satisfactory agreement for longer pulses where classical trajectory dominance emerges, though it necessarily misses the quantum mechanical subtleties apparent in the full treatment.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{gfx/Final/paper1/ATI.pdf}
+    \caption{
+        \label{Fig_ATI}
+        Energy-dependent ionization probability distributions for argon under 800 nm excitation ($5 \times 10^{14}$ W/cm$^2$). 
+        Top/bottom rows correspond to CEP values of 0/$\pi$ respectively, while columns show increasing pulse durations from two cycles (left) to eight cycles (right). 
+        Solid blue curves represent complete quantum mechanical results (Jacobi-Anger), while dashed red curves show saddle-point approximation predictions.
+    }
+\end{figure*}
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.7\textwidth]{gfx/Final/paper1/SaddlePointXY.pdf}
+    \caption{
+        \label{Fig_saddlepointxy}
+        Temporal ionization dynamics for two-cycle pulses at constant kinetic energy of the photoelectron ($\epsilon_{p} = 5\omega$), showing vector potential profiles (black curves) and dominant saddle point locations (yellow markers) for (left) $\phi_{\mathrm{CEP}} = 0$ and (right) $\pi$ configurations. 
+        The distinct saddle point distributions explain the observed CEP-dependent spectral variations.
+    }
+\end{figure*}
+\subsection{Polarization-Dependent Electron Dynamics}
+
+Figure~\ref{Fig_Ellipticity} systematically examines how photoelectron momentum distributions (PMDs) transform as laser polarization transitions from linear to elliptical. The analysis focuses on a two-cycle pulse (800 nm, $5 \times 10^{14}$ W/cm$^2$) interacting with argon atoms, with ellipticity $\varepsilon$ varying from 0.0 (linear) to 0.75 (strongly elliptical).
+
+For purely linear polarization ($\varepsilon = 0.0$), the PMD displays characteristic fringe patterns aligned with the polarization axis ($p_x$), arising from quantum interference between electron wave packets released at different field maxima. The saddle-point analysis in Fig.~\ref{Fig_saddlepointeps} identifies distinct ionization phases contributing to these patterns, with the asymmetric distribution reflecting the vectorial nature of the laser field.
+
+As ellipticity increases to $\varepsilon = 0.25$, the momentum distribution expands along the minor axis ($p_y$) while maintaining discernible interference structures. This evolution demonstrates how the introduction of orthogonal field components modifies electron trajectories without completely suppressing quantum coherence effects. The persistence of interference features indicates that multiple ionization pathways remain phase-correlated despite the altered field geometry.
+
+At intermediate ellipticity ($\varepsilon = 0.5$), the PMD undergoes a qualitative transformation, splitting into two symmetric lobes that trace the polarization ellipse. This bifurcation marks the onset of classical-like behavior, where electron emission follows the instantaneous field direction rather than exhibiting pure quantum interference. The saddle-point analysis reveals that this transition corresponds to a decoherence effect, as phase relationships between different ionization times become disrupted by the rotating field vector.
+
+For near-circular polarization ($\varepsilon = 0.75$), the momentum distribution collapses to two well-defined lobes aligned with the major polarization axis, completely lacking interference structures. This final state represents the classical limit where electron trajectories become fully determined by instantaneous field conditions rather than wave packet interference.
+
+Figure~\ref{Fig_polarization} extends this analysis to the propagation plane, revealing how ellipticity affects out-of-plane electron dynamics. Under linear polarization, the $(p_x,p_z)$ distribution shows clear interference fringes while the $(p_y,p_z)$ plane remains rotationally symmetric - a direct consequence of the field's single-axis oscillation.
+
+With increasing ellipticity, three key changes emerge:
+\begin{itemize}
+    \item The $(p_x,p_z)$ interference patterns gradually disappear as phase coherence diminishes
+    \item The $(p_y,p_z)$ distribution develops anisotropic features aligned with the polarization ellipse
+    \item Both planes exhibit progressive momentum redistribution toward classical predictions
+\end{itemize}
+These observations collectively demonstrate how ellipticity serves as a control parameter for transitioning between quantum-interference-dominated and classical-trajectory-dominated strong-field ionization regimes.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{gfx/Final/paper1/Ellipticity.pdf}
+   \caption{\label{Fig_Ellipticity}Photoelectron momentum distributions in the laser polarization plane for ionization of an argon atom by a two-cycle laser pulse with a wavelength of 800 nm and peak intensity of \( 5 \times 10^{14} \) W/cm\(^2\).  
+		The ellipticity \(\varepsilon\) of the laser field is varied from \( \varepsilon = 0.0 \) (top-left) to \( \varepsilon = 0.75 \) (bottom-right). The color scale represents the normalized probability amplitude.  
+	}
+\end{figure*}
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.95\textwidth]{gfx/Final/paper1/polarization.pdf}
+    \caption{\label{Fig_polarization}Photoelectron momentum distributions in the laser propagation plane for ionization of an argon atom by a two-cycle laser pulse with a wavelength of 800 nm and peak intensity of \( 5 \times 10^{14} \) W/cm\(^2\).  
+		The distributions are shown in the \( (p_x, p_z) \) plane (top row) and the \( (p_y, p_z) \) plane (bottom row), where the ellipticity \(\varepsilon\) of the laser field is varied from \( \varepsilon = 0.0 \) (left) to \( \varepsilon = 0.5 \) (right). The color scale represents the normalized probability amplitude.  
+	}
+\end{figure*}
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.95\textwidth]{gfx/Final/paper1/SaddlePointXYeps.pdf}
+   \caption{\label{Fig_saddlepointeps}Vector potential for a two-cycle laser pulse at a fixed $\phi_{\mathrm{CEP}} = 0$ while varying the ellipticity $\epsilon$. The panels show ellipticity values of $\epsilon = 0.0$, $\epsilon = 0.5$, and $\epsilon = 1.0$, respectively. The yellow dots represent saddle-point solutions, indicating critical points for ionization that shift with changes in the ellipticity. The other parameters are same as Fig. \ref{Fig_saddlepointxy}
+	}
+\end{figure*}
+
+\section{Nonlinear Interference in Strong-Field Ionization}\label{sec:interference}  
+The phenomenon of nonlinear interference in strong-field ionization arises from the coherent superposition of multiple quantum pathways available to photoelectrons during the ionization process. When atoms interact with intense laser fields, electrons can be liberated through various temporal windows within the optical cycle, each acquiring distinct quantum phases during their subsequent propagation in the continuum. These phase differences lead to constructive and destructive interference patterns that manifest in both the energy and momentum distributions of the emitted photoelectrons. The interference structures contain rich information about the ionization dynamics, including the relative contributions of different temporal ionization windows, the accumulation of quantum phase during electron propagation, and the influence of laser parameters on the final electron state. In particular, the interplay between the laser's electric field oscillations and the pulse envelope creates complex interference patterns that evolve characteristically with pulse duration, as the number of contributing ionization pathways increases while their relative phase relationships become more intricate.
+
+\subsection{Interference Patterns in ATI Peaks and Photoelectron Momentum Distributions}
+Figure~\ref{Fig_figure2} presents a systematic investigation of photoelectron energy and momentum distributions for laser pulses comprising 2, 4, and 8 optical cycles. The ATI spectra reveal distinct peaks that correspond directly to concentric rings in the momentum distributions at $p_z=0$, where inner rings represent low-energy photoelectrons and outer rings correspond to higher kinetic energies. These distributions predominantly feature photoelectrons with intermediate kinetic energies, as the extreme energy ranges typically exhibit lower emission probabilities.
+
+The momentum distributions demonstrate significant evolution with increasing pulse duration. The inner ring structures rapidly dissipate as the number of cycles grows, while the outer rings undergo noticeable broadening. This behavior mirrors corresponding changes in the ATI spectra, where peak intensities decrease and widths increase with longer pulses. Notably, additional features emerge in the ATI spectra at higher photoelectron energies, characterized by broader peaks with superimposed oscillatory structures.
+
+To elucidate these oscillations, we derive the Volkov state solution using the vector potential of a circularly polarized pulse ($\epsilon = 1.0$). Through Jacobi-Anger expansion of the Volkov phase, we obtain:
+\begin{equation}
+\chi_{\mathbf{p}}(\mathbf{r},t) = (2\pi)^{-3/2}\prod_{i=1}^5 \sum_{n_i=-\infty}^{\infty} J_{n_i}(x_i) e^{-i(E_N t - \mathbf{p}\cdot\mathbf{r} - \Phi_N)}
+\label{volkovState}
+\end{equation}
+The summation index $n_i$ enumerates absorbed photons, while the Bessel function arguments $x_1$ through $x_5$ take specific forms: $x_1 = U_p n_p/2\omega$, $x_2 = U_p n_p/16\omega$, $x_3 = \rho_0/2$, $x_4 = -\rho_0/4(1-1/n_p)$, and $x_5 = -\rho_0/4(1+1/n_p)$. Here, $\rho_0 = A_0 p \sin\theta_p/\sqrt{2}\omega$ represents a scaled momentum parameter, and $U_p$ denotes the ponderomotive energy.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{gfx/Final/paper2/Pxz-800-Ar.pdf}
+    \caption{
+        \label{Fig_figure2}
+        Photoelectron distributions for 800 nm laser pulses ($5\times10^{14}$ W/cm$^2$) interacting with argon ($I_p=15.7596$ eV). Top row displays ATI spectra versus $\epsilon_p/\omega$ at $p_z=0$. Middle and bottom rows show $(p_x,p_z)$ momentum distributions for CEP values of 0 and $\pi/2$ respectively. Columns represent pulse durations of 2 cycles (left), 4 cycles (middle), and 8 cycles (right).
+    }
+\end{figure*}
+The modified photoelectron energy $E_N$ incorporates multiple contributions:
+\begin{equation}
+E_N = \frac{\mathbf{p}^2}{2} + \frac{3U_p}{8} + \left(-\frac{n_1}{n_p} + \frac{2n_2}{n_p} + n_3 + n_4\left(1 - \frac{1}{n_p}\right) + n_5\left(1 + \frac{1}{n_p}\right)\right)\omega
+\end{equation}
+Similarly, the modified phase $\phi_N$ depends on angular parameters:
+\begin{equation}
+\phi_N = (n_3 + n_4 + n_5)(\phi_{\text{CEP}} - \Lambda\varphi_p)
+\end{equation}
+These relationships satisfy the energy conservation condition:
+\begin{equation}
+\left(\frac{-n_1 + 2n_2 - n_4 + n_5}{n_p} + n_3 + n_4 + n_5\right)\omega = N\omega
+\label{EnergyConservation}
+\end{equation}
+where $N$ represents the net photon order. This equation fundamentally governs the final photoelectron kinetic energy, with $N\omega$ specifying the absorbed photon energy and the $n_i$ parameters describing fractional photon contributions.
+
+The complete energy conservation relation for ATI processes becomes:
+\begin{equation}
+\epsilon_p = N\omega - \left(\frac{3U_p}{8} + I_p\right)
+\end{equation}
+The cyclical peaks in Fig.~\ref{Fig_figure2} emerge from this quantized energy absorption, modulated by Bessel function behavior in the Volkov state. While peak spacing generally reflects the photon energy $\omega$, deviations occur due to the complex interplay between different absorption pathways, as detailed in our supplementary materials.
+
+The ponderomotive energy $U_p$ significantly influences peak positions through its dependence on field oscillations. Few-cycle pulses exhibit substantial $U_p$ variations across cycles, leading to incoherent alignment of ionization amplitudes at different energies. This results in peak shifting - toward lower energies near field maxima and higher energies at lower intensities.
+
+The Bessel parameters $x_i$ reveal distinct physical mechanisms. Parameters $x_1$ and $x_2$ relate to pulse envelope energy, while $x_{3-5}$ describe nonlinear response components. The envelope terms vary with optical cycle count, causing faster oscillations in longer pulses. The nonlinear terms additionally depend on photoelectron momentum, producing momentum-dependent interference effects. For few-cycle pulses, envelope effects dominate at lower energies (Fig.~\ref{Fig_figure2}), while longer pulses exhibit enhanced interference from both mechanisms at higher energies.
+
+Pulse duration also influences the spatial characteristics of the electron momentum distributions. As demonstrated in Fig.~\ref{Fig_figure3}, the full width at half maximum (FWHM) of dominant interference rings decreases with increasing cycle number. This narrowing reflects the improved ability of electrons to adiabatically respond to field variations in longer pulses, leading to more localized momentum distributions. In contrast, few-cycle pulses produce broader and less distinct interference patterns due to the non-adiabatic nature of the electron dynamics under rapidly varying fields.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{gfx/Final/paper2/FWHM.png}
+    \caption{
+        \label{Fig_figure3}
+        FWHM evolution of dominant momentum rings. Left: Fixed $\lambda=600$ nm, varying intensity. Right: Fixed $I=10^{14}$ W/cm$^2$, varying wavelength. Dashed lines indicate trends.
+    }
+\end{figure}
+\subsection{Role of Volkov Phases in Interference Phenomena}
+
+The dynamics of Volkov phases play a crucial role in shaping the interference patterns observed in strong-field ionization processes. Figure~\ref{Fig_volkov0_0.5} illustrates how the phase evolution varies with electron momentum and laser pulse characteristics. At an intermediate momentum of \( p = 0.5 \)~a.u., the Volkov phase exhibits pronounced oscillatory behavior, particularly near the extrema of the laser's vector potential. These oscillations become increasingly intense as the pulse duration lengthens, reflecting the cumulative effect of the laser field on the electron's quantum phase over time. 
+
+For few-cycle pulses (e.g., 2 cycles), the phase structure is characterized by broad peaks, which arise due to the contributions of multiple frequency components in the short pulse spectrum. In contrast, longer pulses lead to sharper and more rapid phase oscillations, as the phase differences between different spectral components diminish, resulting in a more coherent accumulation of phase shifts. 
+
+At lower momenta (\( p = 0.1 \)~a.u., Fig.~\ref{Fig_volkov1_0.1}), the phase evolution is dominated by the envelope energy of the laser pulse rather than the carrier frequency. This results in simpler temporal patterns, where the phase variations are primarily dictated by the slow modulation of the pulse envelope rather than the fast oscillations of the electric field. 
+
+The observed behavior under a $\sin^2$ envelope is likely generalizable to other trigonometric pulse shapes (e.g., cosine, trapezoidal), as these share similar discrete spectral properties. However, Gaussian envelopes, which possess a continuous frequency spectrum, would lead to qualitatively different interference effects. The absence of sharp spectral features in a Gaussian pulse reduces the contrast of interference fringes and introduces additional complexity in the analysis due to the smooth and broadened spectral distribution. 
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{gfx/Final/paper2/Volkov_new.png}
+    \caption{
+        \label{Fig_volkov0_0.5}
+        Volkov phase evolution at $p=0.5$ a.u. for 800 nm pulses ($5\times10^{14}$ W/cm$^2$). Top row: complete phase. Bottom row: individual component contributions. Columns show 2, 4, and 8 cycle durations. Middle row displays vector potential profile (arbitrary units). Parameters: $\beta=0$, $\theta_p=\pi/2$. The plotted quantity corresponds to the real part $\mathrm{Re}[e^{S_{v}(\mathbf{p},t)}]$, which governs the interference structure in the photoelectron spectra.
+    }
+\end{figure*}
+\begin{figure}[h!] 
+	\centering
+	\includegraphics[width=0.7\textwidth]{gfx/Final/paper2/Volkov_0.1.png}
+	\caption{Temporal evolution of a Volkov phase for an 8-cycle pulse. The left panel shows the composite effect of the temporal evolution of Volkov phase within the laser pulse, while the right panel focuses on the contribution from the primary two terms. The laser parameters are the same as those in Fig. \ref{Fig_volkov0_0.5}, except for the parameter \(p\), which is set to 0.1 a.u. The plotted quantity corresponds to the real part $\mathrm{Re}[e^{S_{v}(\mathbf{p},t)}]$, which governs the interference structure in the photoelectron spectra.}
+	\label{Fig_volkov1_0.1}
+\end{figure}
+
+
+\section{Nondipole Effects in Few-Cycle Pulses}\label{sec:nondipole}
+In the preceding sections, the analysis was restricted to the dipole approximation, where the laser field is treated as spatially uniform and only the electric component of the field is considered. At high intensities and long wavelengths, however, the magnetic field and the spatial dependence of the laser vector potential begin to play a measurable role in the electron dynamics. These so-called nondipole effects lead to observable signatures such as momentum shifts along the laser propagation direction and asymmetries in the photoelectron momentum distributions. In this section, we investigate how such nondipole corrections manifest in above-threshold ionization by examining the peak displacement of the photoelectron spectra and comparing it with predictions from both the dipole and nondipole strong-field approximations. The peak displacement ($\Delta P_{z}$) observed in above-threshold ionization spectra arises from a complex interplay between laser parameters and atomic characteristics. This displacement magnitude correlates strongly with laser intensity, as stronger fields induce more pronounced electron-field interactions. As demonstrated in Fig. \ref{fig:2}, comparative analysis between Argon and Neon reveals significant discrepancies between plane-wave theoretical predictions and experimental measurements, while pulsed-field models show improved agreement despite the limited data points shown in the visualization.
+
+An important distinction between the present model and earlier nondipole theories lies in the treatment of the laser field. While most analytical formulations assume a monochromatic plane wave, the present work employs a finite, few-cycle pulse with an explicit spatial dependence of the field envelope, $\mathbf{A}(\mathbf{r},t) = \mathbf{A}(t - \mathbf{k}\cdot\mathbf{r}/\omega)f(\mathbf{r}, t)$. This spatial $\mathbf{k}\!\cdot\!\mathbf{r}$ dependence of the envelope introduces a ponderomotive, or time-averaged, Lorentz-force correction that contributes an additional longitudinal force term,
+\begin{equation}
+    \Delta F_{L,z} = -\frac{\partial U_p}{\partial z},
+\end{equation}
+where $U_p$ is the ponderomotive energy. This term accounts for the envelope-induced momentum transfer along the propagation direction, which becomes particularly relevant for short pulses where the field intensity changes rapidly in space and time. Consequently, our predictions exhibit better agreement with experimental results compared to monochromatic nondipole theories, since the inclusion of the pulse envelope captures the realistic temporal and spatial structure of the driving field.
+
+
+\subsection{Laser Parameter Dependencies}
+
+The ATI spectrum exhibits substantial sensitivity to laser pulse characteristics including duration \cite{Freeman1987}, intensity \cite{Lompre1985}, and wavelength \cite{Marchenko_2010}, with consequent effects on photoelectron angular distributions. Single-cycle pulses generate isotropic emission patterns since the brief interaction window prevents directional preference establishment. In contrast, multi-cycle pulses produce anisotropic distributions (Fig. \ref{fig:3}) through sustained field interactions that impart directional bias to liberated electrons.
+
+Spectral properties further influence emission patterns through wavelength-dependent effects. Short-wavelength radiation promotes anisotropic distributions via temporally concentrated field interactions, while long-wavelength excitation yields more isotropic patterns due to reduced temporal focusing. Intensity variations \cite{Feldmann1987} introduce additional complexity, with higher intensities extending interaction durations and promoting emission alignment with the electric field vector. These parameters interact through nonlinear mechanisms to determine the ultimate angular distribution characteristics.
+
+Detailed examination of propagation-plane distributions (Fig. \ref{fig:3}) reveals several key relationships between laser parameters and angular emission properties. Pulse duration emerges as particularly influential under high-intensity, wavelength at 800 nm conditions. At lower parameter values, dipole and non-dipole calculations produce nearly identical results (Fig. \ref{fig:3}a), while elevated intensities reveal clear cycle-dependent variations (Fig. \ref{fig:3}b-c). These effects become less pronounced at longer wavelengths (Fig. \ref{fig:3}d).
+
+Analysis conducted at peak photoelectron energies accounts for ATI peak splitting effects \cite{Freeman1985} that accompany pulse duration variations. The magnitude of these energy shifts demonstrates positive correlation with intensity and inverse correlation with wavelength. Non-dipole contributions remain remarkably stable across pulse duration variations, with magnetic field influences becoming negligible for extended pulses at either high intensities or long wavelengths. This observation aligns with established theoretical understanding \cite{Simonsen2015} of monochromatic field ionization processes.
+\begin{figure}[h!]    
+	\centering\includegraphics[width=1.0\textwidth]{gfx/Final/paper3/peak_shift.png}
+	%\centering\includegraphics[width=8cm]{peak shift-Ar1.png}
+	\caption{The peak shift $\Delta P_{z}$ of the maxima in ATI spectra are plotted as a function of laser intensity I for a circularly polarized 800 nm, 15 fs laser pulse. Results are shown for two different atomic targets, Ar (left) and Ne (right), and are compared to previous experimental (blue-crosses) and theoretical work: orange (Ref. \cite{Birger2019May}), blue (Ref. \cite{Smeenk2011}), and green (this work).}
+	\label{fig:2}
+\end{figure}
+\begin{figure}[h!]
+	\centering\includegraphics[width=1.0\textwidth]{gfx/Final/paper3/Angular-800.png}
+	\caption{Normalized polar angular distribution (PAD) in the propagation ($p_{x}-p_{z}$) plane ($\varphi_p= 0$) for argon interacting with a circularly polarized sine-squared pulse. The laser wavelengths of 800 nm and 1200 nm are used with intensities ranging between $I=2\times10^{13} - 30\times10^{13} \text{W/cm}^{2}$. The pulse duration is varied with different numbers of optical cycles ($\text{n}_{\text{p}}=2, 4, 8, 16$) and photoelectron energy ($\epsilon_{\text{p,max}}$), at which the maximum ionization probability occurs, is kept constant. The Lorentz force acts on the electron, causing it to be pushed in the direction of laser propagation. The results from both dipole (solid curve) and nondipole (dotted curve) computations are shown.}
+	\label{fig:3}
+\end{figure}
+The momentum-space asymmetry evident in Fig. \ref{Fig_NDshift} demonstrates unambiguous signatures of nondipole interactions during strong-field ionization, characterized by systematic photoelectron momentum shifts along the propagation axis. Comparative analysis of 800~nm and 1200~nm pulses reveals wavelength-dependent forward displacements (positive $p_z$ values), with the longer wavelength exhibiting slightly enhanced deflection magnitude.
+
+The right panel of Fig. \ref{Fig_NDshift} presents a quantitative examination of peak displacement ($\Delta p_z$) versus laser intensity, highlighting the critical role of nondipole phenomena. The Jacobi-Anger (JA) approach demonstrates remarkable agreement with experimental measurements across all intensity values, successfully reproducing both the absolute shift magnitudes and their intensity scaling. This correspondence validates the JA method's fundamental treatment of photon momentum transfer through its Bessel-function framework, which naturally incorporates wavelength dependence without requiring trajectory-based simplifications.
+
+Conversely, the saddle-point approximation exhibits systematic deviations, particularly at lower intensities, where it underestimates the observed shifts. This shortcoming stems from the perturbative treatment of magnetic field effects within a classical trajectory framework, which becomes inadequate when the electron quiver motion approaches the laser wavelength scale.
+
+\subsection{Wavelength-Scaling of Nondipole Phenomena}
+
+Figure \ref{Fig_NDPMD} offers detailed insight into wavelength-dependent nondipole effects during argon atom ionization by circularly polarized pulses. The comparative visualization of dipole and nondipole photoelectron momentum distributions (PMDs) demonstrates progressively stronger deviations with increasing wavelength, emphasizing the necessity of full nondipole treatments, especially in mid-infrared regimes.
+
+The dipole approximation results (left panel, 3200~nm) exhibit perfect $p_z$ symmetry, reflecting the assumed magnetic field negligibility that simplifies theoretical analysis. While valid for short wavelengths and moderate intensities, this assumption breaks down severely in longer-wavelength regimes, as evidenced by the middle and right panels (3200~nm and 4200~nm nondipole calculations).
+
+The nondipole PMDs reveal two key phenomena, systematic positive $p_z$ shifts reaching 0.1~a.u. at 4200~nm and radiation pressure effects that scale nonlinearly with wavelength. These effects originate from magnetic field-induced momentum transfer along the propagation axis, becoming increasingly dominant at mid-infrared wavelengths. The growing peak displacement from $p_z=0$ provides direct evidence of radiation pressure influence on liberated electrons, with important implications for experimental interpretation in long-wavelength regimes.
+\begin{figure*}
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/Final/paper3/shift.pdf}
+    \caption{
+        \textbf{Left:} Momentum-space ionization probability $P(\mathbf{p})$ for 2-cycle circularly polarized pulses at 800~nm (orange) and 1200~nm (blue), intensity $5 \times 10^{14}~\mathrm{W/cm}^2$. Wavelength-dependent forward shifts ($p_z>0$) are apparent, with detailed structure shown in the inset. 
+        \textbf{Right:} Intensity dependence of $\Delta p_z$ for 800~nm, 15~fs pulses, comparing JA and saddle-point methods with experimental data \cite{Smeenk2011} and theoretical benchmarks \cite{Birger2019May}.
+    }
+    \label{Fig_NDshift}
+\end{figure*}
+\begin{figure*}
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/Final/paper3/DND_Momentum.pdf}
+    \caption{
+        Dipole vs. nondipole PMD comparison for argon ionization by circularly polarized pulses ($5 \times 10^{14}~\mathrm{W/cm}^2$), displayed in $(|p_x|, p_z)$ coordinates. Left: Dipole result at 3200~nm. Middle/Right: Nondipole results for 3200~nm and 4200~nm. Dashed lines indicate $p_z=0$ reference, with crosses marking probability maxima. The color scale represents normalized probability density, highlighting the growing $p_z$ displacement with wavelength under nondipole conditions.
+    }
+    \label{Fig_NDPMD}
+\end{figure*}
+
+
+\subsection{Pulse-Cycle Dependence in Non-Dipole ATI Dynamics}
+
+In strong-field ionization, the number of optical cycles within a laser pulse critically governs the electron dynamics during and after ionization. Unlike the dipole approximation, where the magnetic field component is neglected, non-dipole ATI explicitly accounts for this interaction, leading to asymmetric photoelectron momentum distributions. This asymmetry manifests as a systematic shift ($\Delta P_{z}$) of spectral peaks along the laser propagation direction, as quantified in Fig.~\ref{Fig:3}.
+
+The observed peak displacements arise from three interrelated physical mechanisms. First, the magnetic field component of the laser breaks the symmetry of the electron wave packet, imparting a directional bias to the photoelectron momentum. Second, with increasing pulse cycles, the liberated electron experiences prolonged interaction with the laser field, amplifying the asymmetry through cumulative momentum transfer. Third, quantum interference between electron wave packets generated in successive cycles modifies the spectral structure, as theoretically predicted in \cite{Madsen2022}. These effects collectively explain the intensity- and cycle-dependent shifts visible in Fig.~\ref{Fig:3}.
+
+Comparative analysis of krypton and argon targets reveals subtle but consequential differences in peak shift magnitudes. The atomic species dependence arises from variations in ionization potentials and electronic structure, which influence both the initial ionization step and subsequent laser-driven electron dynamics. Figure~\ref{Fig:3} isolates these target-specific effects while holding pulse parameters constant, thereby highlighting the role of optical cycles independent of other variables. The data demonstrate that while the general trend of increasing $\Delta P_{z}$ with intensity is universal, its magnitude and fine structure are sensitive to the target atom.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{gfx/Final/paper3/peakshift.png}
+    \caption{
+        Measured peak shifts $\Delta P_{z}$ in ATI spectra as a function of laser intensity $I$ for krypton (left) and argon (right) targets. The laser wavelength and intensity are maintained at 700 nm and $5\times10^{14}$W/cm$^2$, respectively..
+    }
+    \label{Fig:3}
+\end{figure}
+\section{Strong-Field Ionization with Twisted Beams}\label{sec:twisted}
+While previous sections employed the velocity gauge to describe strong-field ionization with plane-wave pulses, the analysis of twisted beams (e.g., Bessel pulses carrying orbital angular momentum, OAM) necessitates a switch to the length gauge. This choice is motivated by three key factors:
+\begin{itemize}
+    \item \textbf{Physical Intuition in Non-Perturbative Regimes:} 
+    The length gauge's interaction term, $ \mathbf{E}(t) \cdot \mathbf{r} $, directly couples the electric field to the electron's position, offering a clearer interpretation of tunneling ionization,a dominant process in SFI. For twisted beams, where the field has spatially varying phase (e.g., $ e^{i m_\gamma \phi} $) and intensity profiles, this gauge naturally captures the interplay between the OAM-induced structured field and the electron's escape dynamics.
+    
+    \item \textbf{Alignment with Stationary-Phase Methods:}
+    The saddle-point analysis (Fig.~\ref{Fig:SaddlePointsxyz}) relies on identifying critical times $ t_s $ when the electron couples to the field to reach a final energy $ \epsilon_p $. The length gauge's explicit dependence on $ \mathbf{r} $ simplifies the connection between saddle points and the \textbf{spatial structure} of twisted beams, particularly for the enhanced $ z $-component observed at higher $ m_\gamma $.
+    
+    \item \textbf{Gauge Consistency for Structured Fields:}
+    Unlike plane waves, twisted beams exhibit non-trivial longitudinal fields (e.g., $ E_z \neq 0 $) and phase singularities. The velocity gauge's $ \mathbf{p} \cdot \mathbf{A} $ interaction complicates momentum-space interpretations due to artificial gauge shifts, while the length gauge avoids these ambiguities, ensuring a direct link to observable photoelectron distributions.
+\end{itemize}
+In the general formulation (Eq.~\ref{Eq:TransitionAmplitudeSaddle}), the transition amplitude was expressed via the saddle-point approximation as
+\begin{equation}
+    T^{\text{SP}}_0(\mathbf{p}) = \sum_{t_s} V^L(\mathbf{q},t_s) 
+    \sqrt{\frac{2 \pi i}{\mathbf{E}(t_s) \cdot [\mathbf{p} + \mathbf{A}(t_s)]}} 
+    e^{i [S(\mathbf{p}, t_s) + I_p t_s]},
+    \label{Eq:TransitionAmplitudeSaddleNew}
+\end{equation}
+where $S(\mathbf{p},t_s)$ is the classical action evaluated at saddle points $t_s$, and $V^L(\mathbf{p},t_s)$ contains the pre-exponential factors including the dipole matrix element. Here we used short notation for $\mathbf{q} = \mathbf{p} + \mathbf{A}(t_s)$. However, for twisted beams with orbital angular momentum $m_\gamma$, the matrix elements develop singularities when
+\begin{equation}
+\langle \mathbf{q} | \mathbf{r} \cdot \mathbf{E}(\mathbf{r}) | \psi_0 \rangle \sim \int d^3r \, e^{-i\mathbf{q}\cdot\mathbf{r}} \mathbf{r} \cdot \mathbf{E}_{m_\gamma}(\mathbf{r}) \psi_0(\mathbf{r})
+\end{equation}
+where $\mathbf{E}_{m_\gamma}(\mathbf{r})$ contains phase singularities of the form $e^{im_\gamma\phi}r^{|m_\gamma|}$ near the optical vortex ($r\to0$). This necessitates modifications to the saddle point method such that the singularity vanishes. For the sake of simplicity, We employ the saddle point method adapted specifically to the hydrogenic $1s$ state as
+\begin{equation}
+	T^{\text{SP}}_0(\mathbf{p}) = -2^{-1/2}(2I_p)^{5/4} \sum_{t_s} \frac{\exp\left[i S(\mathbf{p}, t_s)\right]}{S''(\mathbf{p}, t_s)},
+	\label{Eq::ModifiedTransitionAmplitudesaddle}
+\end{equation}
+where the sum runs over all relevant saddle points \( t_s \) that are part of the steepest-descent integration path. The detailed derivation are provided in the appendix.
+\subsection{Electric Field Dynamics and Corresponding Saddle Points in Bessel Pulses}
+The electric field components of a two-cycle Bessel pulse along the $x$, $y$, and $z$ directions are presented in Figure~\ref{Fig:SaddlePointsxyz}, analyzed for various values of $m_\gamma$ and $\theta_k$. Critical interaction times $\tau = \text{Re}\,t_s$, marked by orange indicators, correspond to moments when the electron must couple with the field to achieve a detector energy of $\epsilon_p = 5\omega$. A striking feature emerges for $m_\gamma = 2$, where the $z$-component exhibits substantial enhancement with increasing opening angle, signaling the activation of additional quantum pathways. These quantum paths, defined as stationary-phase trajectories contributing to the ionization amplitude, originate from new saddle points introduced by the $z$-component's influence. This phenomenon demonstrates how higher angular momentum states modify ionization dynamics through field-structure interactions. In contrast, the $m_\gamma = 1$ case shows no $z$-component contribution, making the opening angle irrelevant to ionization dynamics and highlighting the crucial role of system symmetry in determining available quantum paths.
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.8\textwidth]{gfx/Final/paper4/SaddlePointsXYZ.pdf}
+	\caption{Electric field of a two-cycle Bessel pulse with saddle-point solutions (orange circles) for a laser intensity of \(5 \times 10^{13} \, \mathrm{W/cm}^2\) and \(\epsilon_p = 5\omega\). The TAM values \(m_\gamma = 1, 2\) are shown from top to bottom, with a opening angle of \(\theta_k = 20^\circ\) and \(60^\circ\) left to right respectively. Grey plots represent the projections of the electric field on the \(xy\), \(xz\), and \(yz\) planes.}
+	\label{Fig:SaddlePointsxyz}
+\end{figure*}
+
+Figure~\ref{Fig:SaddlePoints} presents the Bessel pulse's electric field alongside corresponding saddle points (gray circles) across the energy range $0 \leq \epsilon_p \leq 20\omega$, comparing $m_\gamma = 1$ and $m_\gamma = 2$ configurations at opening angles of $20^\circ$ and $60^\circ$. The saddle points were computed using Julia's \texttt{NLsolve} package \cite{Bezanson2018,mogensen2018optim,patrick_kofod_mogensen_2020_4404703} with Newton-Raphson refinement. For $m_\gamma = 1$, the inward migration of saddle points with increasing photon energy reflects reduced electron-field interaction times, characteristic of direct ionization processes in lower angular momentum states. Conversely, $m_\gamma = 2$ displays outward-moving saddle points, indicating extended interaction durations necessary for effective ionization. The opening angle $\theta_k$ plays a particularly significant role for $m_\gamma = 2$, where larger values activate new quantum paths through $z$-component contributions. While these additional saddle points initially provide minor contributions to the temporal integral at small $\theta_k$, their influence becomes dominant at larger opening angles. This transition occurs as saddle points beyond certain imaginary-time thresholds become negligible, revealing how pulse geometry and angular momentum jointly control ionization dynamics through saddle-point redistribution.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{gfx/Final/paper4/SaddlePoints.pdf}
+	\caption{Electric field components of a two-cycle Bessel pulse with saddle-point solutions (gray circles) for a laser intensity of \(5 \times 10^{13} \, \mathrm{W/cm}^2\) and \(\epsilon_p\) ranging from \(0 \leq \epsilon_p \leq 20 \omega\). The colored lines represent the electric field components: red for \( E_x \), blue for \( E_y \), and green for \( E_z \). The TAM values \(m_\gamma = 1, 2\) are shown from left to right, with a fixed opening angle \(\theta_k = 20^\circ\) and \(60^\circ\). \(\theta_p\) and \(\varphi_p\) are kept constant at \(90^\circ\) and \(0^\circ\) respectively.  Black dashed arrow-headed lines indicate the direction of the saddle point with increasing kinetic energy of the photoelectrons.}
+	\label{Fig:SaddlePoints}
+\end{figure} 
+\subsection{Role of Orbital Angular Momentum in Ionization Dynamics}
+The angular-resolved photoelectron momentum distribution (PMD) for a two-cycle Bessel pulse is shown in Figure~\ref{Fig:ARPMD1}, comparing $m_\gamma$ values of 1, 2, and 3 under consistent laser parameters: wavelength $\lambda = 800\,\mathrm{nm}$, polar angle $\theta_p = 90^\circ$, azimuthal angle $\varphi_p = 0^\circ$, and intensity $I_\perp = 5 \times 10^{13}\,\mathrm{W/cm}^2$. Fringe shifting observed at larger opening angles, particularly for $m_\gamma \geq 2$, stems from enhanced coupling with the longitudinal field component along the $z$-axis. This $z$-component interaction elongates electron trajectories in momentum space, especially for higher total angular momentum projections. While Figure~\ref{Fig:SaddlePointsxyz} demonstrates increasing $z$-component contributions with $\theta_k$, similar fringe shifts occur for $m_\gamma = 1$ where no $z$-component exists. This dual behavior arises from the ponderomotive energy
+\[
+U_p = \frac{3}{32} A_0^2 \left( 2\alpha_{-1}^2 + 2\alpha_{+1}^2 + \alpha_0^2 \right),
+\]
+where $\alpha_{\pm 1}$ represent $x$- and $y$-field components and $\alpha_0$ corresponds to the $z$-component. Since all terms depend on $\theta_k$, the fringe shifts reflect combined contributions from both transverse and longitudinal field components.
+\begin{figure*}
+	\centering
+	\includegraphics[width=\textwidth]{gfx/Final/paper4/openAngle.pdf}
+	\caption{Photoelectron momentum distribution (PMD) resolved by opening angle for different \(m_\gamma\) values. The parameters are: wavelength \(\lambda = 800 \, \mathrm{nm}\), polar angle \(\theta_p = 90^\circ\), azimuthal angle \(\varphi_p = 0^\circ\), helicity \(\Lambda = +1\), and peak intensity \(I_\perp = 5 \times 10^{13} \, \mathrm{W/cm}^2\). The colorbar represents the normalized ionization probability.}
+	\label{Fig:ARPMD1}
+\end{figure*}
+
+The transverse momentum distributions in the $p_x$-$p_y$ plane (Figure~\ref{Fig:PMD1}) reveal progressive confinement effects with increasing $m_\gamma$ at fixed $\theta_k = 20^\circ$. The $m_\gamma = 1$ distribution shows characteristic broad fringes from purely transverse field interactions, while higher $m_\gamma$ values exhibit narrowing distributions due to growing longitudinal component influence. This confinement manifests as momentum-space "flipping" along $p_y$ for $m_\gamma \geq 2$, demonstrating how angular momentum projection shapes the final electron momentum distribution.
+
+Longitudinal effects become particularly evident in Figure~\ref{Fig:PMD3}, which examines the $p_z$-$p_y$ plane for $m_\gamma = 2$ at $\theta_k = 5^\circ$, $20^\circ$, and $40^\circ$. The transition from transverse-dominated dynamics at $\theta_k = 5^\circ$ to longitudinal-driven behavior at $\theta_k = 40^\circ$ occurs while maintaining symmetric double-peak structures. This evolution identifies critical $\theta_k$ thresholds where longitudinal field components begin dominating the ionization dynamics, providing clear evidence of geometry-dependent control over electron trajectories.
+
+Collectively, these results demonstrate how Bessel pulse parameters govern strong-field ionization through three primary mechanisms: quantum path activation via longitudinal fields, saddle-point redistribution, and momentum-space confinement effects. The intricate relationship between pulse geometry and angular momentum components offers powerful tools for manipulating ionization processes through precise field parameter control.
+\begin{figure*}
+	\includegraphics[width=\textwidth]{gfx/Final/paper4/PMD1.pdf}
+	\caption{Photoelectron momentum distribution in the laser polarization $p_x - p_y$ plane for a laser intensity of $5 \times 10^{13}$ W/cm$^2$. The laser parameters are identical to those in Fig.~\ref{Fig:ARPMD1}, with an opening angle of $\theta_k = 20^\circ$. The colorbar represents the normalized ionization probability.}
+	\label{Fig:PMD1} 	
+\end{figure*}
+
+The expansion of quantum pathways with increasing opening angle $\theta_k$ reveals fundamental aspects of Bessel pulse ionization dynamics. For higher $m_\gamma$ values, the growing longitudinal ($z$) component of the Bessel pulse activates additional quantum paths through new saddle points, which manifest primarily in the lower and central energy regions of the photoelectron momentum distribution (PMD). This activation mechanism explains the enhanced ionization probability observed at wider opening angles. The $m_\gamma = 1$ case presents qualitatively different behavior - with no $z$-component contribution, the ionization probability increases linearly, governed solely by transverse ($x$ and $y$) field components. In contrast, higher $m_\gamma$ values exhibit nonlinear probability enhancement from two concurrent effects: strengthening $z$-component contributions and the emergence of new quantum paths. These longitudinal-field-associated saddle points particularly amplify ionization in lower PMD energy regions, creating the observed accelerated ionization rate scaling for $m_\gamma \geq 2$.
+
+Figure~\ref{Fig:PMD1} presents transverse momentum distributions in the $p_x$-$p_y$ plane for total angular momentum (TAM) values $m_\gamma = 1, 2, 3$ under a two-cycle Bessel pulse ($\theta_k = 20^\circ$). The distributions, recorded in the polarization plane perpendicular to the propagation ($z$) axis, demonstrate how increasing TAM modifies electron dynamics. While the $z$-component doesn't directly affect transverse momentum, it significantly influences the overall ionization process. The characteristic semicircular patterns, consistent with short-pulse strong-field ionization, undergo progressive narrowing along both $p_x$ and $p_y$ directions as $m_\gamma$ increases from 1 to 3. 
+
+This transverse confinement stems from the $z$-component's growing influence at higher $m_\gamma$, which redirects ionization dynamics along the propagation axis. The $m_\gamma = 1$ distribution (left panel) shows maximal transverse spread with distinct interference fringes, reflecting pure transverse-field driving. For $m_\gamma = 2$ (middle panel) and $m_\gamma = 3$ (right panel), the distributions exhibit pronounced confinement, appearing as compressed versions of the $m_\gamma = 1$ case with an apparent $p_y$-axis flip. This transformation directly correlates with the strengthening $z$-component, which increasingly dominates the ionization dynamics for higher angular momentum states. The progressive narrowing demonstrates how TAM projection controls the spatial distribution of ionized electrons through the competition between transverse and longitudinal field components.
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{gfx/Final/paper4/PMD2.pdf}
+	\caption{Photoelectron momentum distribution in the laser polarization $p_x - p_y$ plane for a laser intensity of $5 \times 10^{13}$ W/cm$^2$. The laser parameters are identical to those in Fig.~\ref{Fig:ARPMD1}, with $m_\gamma = 2$ and an opening angle of $\theta_k = 20^\circ$ and $\theta_k = 60^\circ$. The colorbar represents the normalized ionization probability.}
+	\label{Fig:PMD2} 	
+\end{figure}
+
+The transition from transverse-dominated to longitudinally-influenced dynamics occurs through three identifiable stages: (1) For $m_\gamma = 1$, purely transverse fields create broad, symmetric distributions; (2) At $m_\gamma = 2$, emerging $z$-component effects initiate transverse compression; (3) The $m_\gamma = 3$ case shows fully developed longitudinal influence with maximally confined distributions. This evolution provides clear experimental signatures of how angular momentum projection shapes strong-field ionization outcomes through field-component interplay.
+
+The momentum distribution for $m_\gamma = 3$ reveals particularly strong confinement along both $p_x$ and $p_y$ axes, demonstrating the dominant role of the longitudinal ($z$) field component at higher angular momentum states. This pronounced narrowing in the transverse plane directly results from the electron's motion being increasingly redirected along the propagation axis, with the $z$-component's influence growing substantially with $m_\gamma$. The complete ionization dynamics thus transitions from transverse-field dominance at lower $m_\gamma$ to $z$-component control at higher values.
+
+Figure~\ref{Fig:PMD2} demonstrates the angular dependence of electron dynamics, where increasing $\theta_k$ from $20^\circ$ to $60^\circ$ transforms the PMD from a broad, fringe-rich distribution to a significantly narrower profile. This compression reflects the growing influence of the longitudinal field component, which reshapes the effective potential landscape experienced by the electron. The fringe compression toward the center indicates stronger transverse confinement at larger angles, as the three-dimensional momentum distribution (peaked outside the $p_x$-$p_y$ plane) projects into increasingly constrained transverse coordinates.
+\begin{figure*}
+	\includegraphics[width=\textwidth]{gfx/Final/paper4/PMD3.pdf}
+	\caption{Photoelectron momentum distribution in the laser propagation $p_z - p_y$ plane for a laser intensity of $5 \times 10^{13}$ W/cm$^2$. The laser parameters are identical to those in Fig.~\ref{Fig:ARPMD1}, with $m_\gamma = 2$ and an opening angle of $\theta_k = 5^\circ$, $20^\circ$, and $40^\circ$. The colorbar represents the normalized ionization probability.}
+	\label{Fig:PMD3}
+\end{figure*}
+
+The longitudinal field's role becomes particularly evident in Figure~\ref{Fig:PMD3}, which examines the $p_z$-$p_y$ plane for $m_\gamma = 2$ across three opening angles. At $\theta_k = 5^\circ$, the symmetric double-peak structure centered at $p_z = 0$ confirms transverse-field dominance, with minimal longitudinal influence. The distribution maintains cylindrical symmetry about the propagation axis, characteristic of conventional strong-field ionization patterns.
+
+Intermediate angles ($\theta_k = 20^\circ$) reveal the onset of longitudinal effects through measurable $p_z$ shifts, while remarkably preserving the transverse double-peak structure. This hybrid behavior demonstrates the competing influences of transverse and longitudinal field components during the ionization process. At $\theta_k = 40^\circ$, the dramatic $p_z$ separation confirms longitudinal-field dominance, though the persistent $p_y$ symmetry indicates that transverse components still govern in-plane dynamics.
+
+The complete angular progression reveals a clear transition threshold where longitudinal effects surpass transverse contributions. Below $\theta_k \approx 15^\circ$, the dynamics remain transverse-dominated, while above $\theta_k \approx 30^\circ$, the longitudinal component controls the overall electron trajectory. This transition manifests through three key signatures: (1) growing $p_z$ momentum components, (2) transverse momentum narrowing, and (3) preserved in-plane symmetry - together providing comprehensive evidence of field-geometry-controlled ionization dynamics.
+
