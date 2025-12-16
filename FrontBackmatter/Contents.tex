@@ -1,0 +1,99 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+\pagestyle{scrheadings}
+%\phantomsection
+\pdfbookmark[1]{\contentsname}{tableofcontents}
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+\manualmark
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\tableofcontents
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\textsc{\thesection}\enspace\spacedlowsmallcaps{#1}}}
+%*******************************************************
+% List of Figures and of the Tables
+%*******************************************************
+\clearpage
+% \pagestyle{empty} % Uncomment this line if your lists should not have any headlines with section name and page number
+\begingroup
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+    %*******************************************************
+    % List of Figures
+    %*******************************************************
+    %\phantomsection
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \pdfbookmark[1]{\listfigurename}{lof}
+    \listoffigures
+
+    \vspace{8ex}
+
+    %*******************************************************
+    % List of Tables
+    %*******************************************************
+    %\phantomsection
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    %\pdfbookmark[1]{\listtablename}{lot}
+    %\listoftables
+
+    %\vspace{8ex}
+    % \newpage
+
+    %*******************************************************
+    % List of Listings
+    %*******************************************************
+    %\phantomsection
+    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
+    %\pdfbookmark[1]{\lstlistlistingname}{lol}
+    %\lstlistoflistings
+
+    %\vspace{8ex}
+
+    %*******************************************************
+    % Acronyms
+    %*******************************************************
+    \newpage
+    %\phantomsection
+%     \pdfbookmark[1]{Acronyms}{acronyms}
+%     \markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+%     \chapter*{Acronyms}
+%     \begin{acronym}[UMLX]
+% 		\acro{SPDC}{spontaneous parametric down-conversion}
+%   \acro{DOF}{degree of freedom}
+%   \acro{DOFs}{degrees of freedom}
+%                   \acro{LG}{Laguerre-Gaussian}
+%           \acro{HG}{Hermite-Gaussian}
+%           \acro{IG}{Ince-Gaussian}
+%           \acro{OAM}{orbital angular momentum}
+%           \acro{GBS}{Gaussian boson sampling}
+%           \acro{SMF} {single-mode fiber}
+%           \acro{FWM}{ four-wave mixing}
+%           \acro{TAM}{total angular momentum}
+%             \acro{CW}{continuous wave}
+%             \acro{KTP}{potassium titanyl phosphate}
+%                 \end{acronym}
+
+	%*******************************************************
+    % Tools and Methods
+    %*******************************************************
+    %\phantomsection
+    \pdfbookmark[1]{Tools and methods}{Tools and methods}
+    \markboth{\spacedlowsmallcaps{Tools and methods}}{\spacedlowsmallcaps{Tools and methods}}
+    \chapter*{Tools and methods}
+    \begin{itemize}
+        \item This document was typeset in LaTex using the typographical look-and-feel \texttt{classicthesis} developed by Andr\'e Miede and Ivo Pletikosić.
+        \item Writefull language feedback tool was used to improve English grammar.
+        \item The content of this thesis primarily encompasses analytical work. Wherever results are shown for specific physical parameters, computational tools have been employed to evaluate the respective analytical expressions for numerical values. In particular, Julia and Python were used for computation purposes and for creating all the plots in this thesis.
+        \item  Furthermore, most of the figures shown in this thesis have been edited using Inkscape v. 1.2.
+    \end{itemize}
+   
+  
+  
+    
+     
+    
+
+
+\endgroup

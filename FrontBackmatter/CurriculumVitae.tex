@@ -1,0 +1,16 @@
+% Dedication
+
+%\refstepcounter{dummy}
+
+%
+%\manualmark % Work-around to have small caps also here in the headline
+\markboth{\spacedlowsmallcaps{Curriculum Vitae}}{\spacedlowsmallcaps{Curriculum Vitae}} % Work-around to have small caps also
+%\phantomsection
+
+%\addtocontents{toc}{\protect\vspace{\beforebibskip}} % Place the bibliography slightly below the rest of the document content in the table of contents
+\phantomsection
+\addcontentsline{toc}{chapter}{\tocEntry{Curriculum Vitae}}
+%\pdfbookmark[1]{Curriculum Vitae}{Curriculum Vitae} % Bookmark name visible in a PDF viewer
+%\chapter*{Curriculum Vitae}
+%\thispagestyle{empty}
+\cleardoublepage\includepdf[pages=-]{CV.pdf}
